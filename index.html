@@ -1,0 +1,2755 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dikkat Değerlendirme Testi | 6–10 Yaş</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<script>
+// DOCX kutuphanelerini sayfa tam yuklenince async yukle
+// Boylece CDN erisimi olmasa da temel uygulama calisir
+window.addEventListener('load',function(){
+  // docx kütüphanesini yükle
+  var s1=document.createElement('script');
+  s1.src='https://unpkg.com/docx@7.8.2/build/index.js';
+  document.head.appendChild(s1);
+  // FileSaver kütüphanesini yükle (masaüstü fallback için)
+  var s2=document.createElement('script');
+  s2.src='https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js';
+  document.head.appendChild(s2);
+});
+</script>
+<style>
+:root{
+  --navy:#1a2e5a;--navy2:#223577;--cyan:#00b4d8;--cyan-light:#e0f7ff;
+  --ok:#16a34a;--ok-soft:#dcfce7;--warn:#d97706;--warn-soft:#fef3c7;
+  --danger:#dc2626;--danger-soft:#fee2e2;
+  --bg:#f0f4ff;--white:#ffffff;--text:#1e293b;--muted:#64748b;--line:#dde3f0;
+  --radius:12px;--radius-lg:18px;--radius-xl:24px;
+  --shadow:0 4px 16px rgba(26,46,90,.10);--shadow-lg:0 8px 32px rgba(26,46,90,.14);
+  --font-body:'Noto Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --t1:#7c3aed;--t2:#0369a1;--t3:#0891b2;--t4:#b45309;--t5:#b91c1c;--t6:#15803d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+/* iOS Safari file:// fix: cursor:pointer olan her öğe click alır */
+button,a,[role="button"],label{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+
+/* ── HEADER ── */
+.app-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1d4ed8 100%);color:#fff;padding:20px 32px;display:flex;align-items:center;gap:20px;border-bottom:4px solid var(--cyan);box-shadow:var(--shadow-lg)}
+.app-header-logo{width:52px;height:52px;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.app-header-text h1{font-size:20px;font-weight:900;letter-spacing:-.3px;line-height:1.2}
+.app-header-text p{font-size:13px;color:#c7d8f5;margin-top:2px}
+.app-header-badges{margin-left:auto;display:flex;gap:8px;flex-shrink:0}
+.app-header-badges .badge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);color:#e0ecff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700}
+
+/* ── MAIN LAYOUT ── */
+.container{max-width:980px;margin:0 auto;padding:28px 16px}
+
+/* ── STEPPER TABS ── */
+.tabs-bar{background:var(--white);border-radius:var(--radius-lg);padding:6px;box-shadow:var(--shadow);display:flex;gap:4px;margin-bottom:24px;border:1px solid var(--line)}
+.tab-btn{flex:1;border:none;background:transparent;padding:11px 8px;border-radius:10px;cursor:pointer;font-family:var(--font-body);font-size:13px;font-weight:700;color:var(--muted);transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tab-btn .tab-icon{font-size:20px}
+.tab-btn.active{background:var(--navy);color:#fff;box-shadow:0 2px 8px rgba(26,46,90,.25)}
+.tab-btn.done{background:var(--ok-soft);color:var(--ok)}
+.tab-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── PANELS ── */
+.panel{display:none}.panel.active{display:block;animation:fadeSlide .3s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── STUDENT INFO PANEL ── */
+.info-card{background:var(--white);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.info-card h2{color:var(--navy);font-size:22px;font-weight:900;margin-bottom:6px}
+.info-card .subtitle{color:var(--muted);font-size:14px;margin-bottom:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:7px}
+.form-field.full{grid-column:1/-1}
+.form-field.half{grid-column:span 2}
+.form-label{font-size:13px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px}
+.form-label .req{color:var(--danger);font-size:16px;line-height:1}
+.form-input{padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:16px;font-family:var(--font-body);color:var(--text);background:#fff;transition:all .2s;width:100%}
+.form-input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,180,216,.15)}
+select.form-input{cursor:pointer}
+.grade-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px}
+/* Radio input'lar görünmez ve grid'den çıkarılır */
+.grade-radio{display:none}
+/* Radio gizli, label tıklanabilir kart */
+.grade-card{border:2px solid var(--line);border-radius:12px;padding:16px 8px;cursor:pointer;text-align:center;transition:all .2s;background:#fff;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:80px;user-select:none;font-family:var(--font-body);display:block;width:100%}
+.grade-card:hover{border-color:var(--cyan);background:var(--cyan-light)}
+/* Seçili durum: radio:checked + label */
+.grade-radio:checked + .grade-card{border-color:var(--navy);background:var(--navy);color:#fff}
+.grade-card .grade-num{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:28px;line-height:1;color:var(--navy)}
+.grade-radio:checked + .grade-card .grade-num{color:#fff}
+.grade-card .grade-age{font-size:11px;color:var(--muted);margin-top:3px}
+.grade-card .grade-level{font-size:11px;margin-top:2px;color:var(--muted)}
+.grade-radio:checked + .grade-card .grade-age,
+.grade-radio:checked + .grade-card .grade-level{color:rgba(255,255,255,.8)}
+.info-disclaimer{background:#fffbeb;border:1.5px solid #fde68a;border-radius:12px;padding:16px 20px;margin-top:24px;font-size:13px;color:#92400e;line-height:1.6}
+.info-disclaimer strong{display:block;margin-bottom:4px}
+.btn-start{cursor:pointer;font-weight:900;width:100%;margin-top:24px;padding:18px;min-height:60px;touch-action:manipulation;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border:none;border-radius:14px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:19px;letter-spacing:.5px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,46,90,.3)}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,46,90,.35)}
+
+/* ── TASK PROGRESS BAR ── */
+.task-progress{background:var(--white);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow);margin-bottom:20px;border:1px solid var(--line)}
+.task-progress-track{display:flex;align-items:center;gap:0}
+.task-pip{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.task-pip:not(:last-child)::after{content:'';position:absolute;top:14px;left:calc(50% + 16px);right:calc(-50% + 16px);height:3px;background:var(--line);z-index:0}
+.task-pip.done:not(:last-child)::after{background:var(--ok)}
+.task-pip.active:not(:last-child)::after{background:linear-gradient(to right,var(--navy),var(--line))}
+.pip-circle{width:30px;height:30px;border-radius:50%;border:3px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--muted);z-index:1;position:relative;transition:all .3s}
+.task-pip.done .pip-circle{background:var(--ok);border-color:var(--ok);color:#fff}
+.task-pip.active .pip-circle{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 0 0 4px rgba(26,46,90,.2)}
+.pip-label{font-size:10px;font-weight:700;color:var(--muted);text-align:center;line-height:1.2}
+.task-pip.active .pip-label{color:var(--navy)}
+.task-pip.done .pip-label{color:var(--ok)}
+
+/* ── TASK DISPLAY AREA ── */
+#task-area{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;min-height:520px;display:flex;flex-direction:column;user-select:none;-webkit-user-select:none}
+
+/* ── TASK INTRO ── */
+.task-intro{padding:40px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
+.task-intro-icon{width:90px;height:90px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.task-intro h2{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:28px;color:var(--navy);margin-bottom:8px}
+.task-intro .task-subtitle{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+.task-intro-card{background:var(--bg);border-radius:14px;padding:20px 24px;max-width:520px;text-align:left;margin-bottom:24px;border:1.5px solid var(--line)}
+.task-intro-card .instruction-title{font-weight:800;font-size:15px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.task-intro-card ul{padding-left:20px;display:flex;flex-direction:column;gap:7px}
+.task-intro-card ul li{font-size:14px;color:var(--text)}
+.task-intro-demo{display:flex;align-items:center;justify-content:center;gap:20px;background:linear-gradient(135deg,#f8faff,#e8f0ff);border-radius:14px;padding:20px;margin-bottom:24px;border:1.5px dashed #c7d8f5;flex-wrap:wrap}
+.demo-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);text-align:center;margin-top:6px}
+.btn-begin-task{cursor:pointer;font-weight:900;padding:16px 40px;min-height:56px;touch-action:manipulation;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:18px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,46,90,.3)}
+.btn-begin-task:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,46,90,.35)}
+
+/* ── COUNTDOWN ── */
+.countdown-screen{display:flex;align-items:center;justify-content:center;flex:1;flex-direction:column;gap:12px}
+.countdown-num{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:120px;line-height:1;color:var(--navy);animation:countPulse .9s ease forwards}
+@keyframes countPulse{0%{transform:scale(1.4);opacity:0}40%{transform:scale(1);opacity:1}85%{transform:scale(.95);opacity:1}100%{transform:scale(.85);opacity:0}}
+.countdown-msg{font-size:22px;font-weight:800;color:var(--muted);letter-spacing:2px}
+
+/* ── TASK COMPLETE ── */
+.task-complete-screen{display:flex;align-items:center;justify-content:center;flex:1;flex-direction:column;gap:16px;padding:40px;text-align:center}
+.complete-icon{font-size:80px;animation:bounceIn .5s ease}
+@keyframes bounceIn{0%{transform:scale(0)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.complete-title{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:32px;color:var(--ok)}
+.complete-msg{font-size:16px;color:var(--muted);max-width:340px}
+.btn-next-task{cursor:pointer;font-weight:900;padding:16px 40px;min-height:56px;touch-action:manipulation;background:linear-gradient(135deg,var(--ok),#15803d);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:18px;cursor:pointer;margin-top:8px;transition:all .2s;box-shadow:0 4px 14px rgba(22,163,74,.3)}
+.btn-next-task:hover{transform:translateY(-2px)}
+
+/* ── TIMER BAR ── */
+.timer-bar-wrap{padding:16px 24px;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px}
+.timer-num{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:24px;color:var(--navy);min-width:48px}
+.timer-track{flex:1;height:10px;background:#dde3f0;border-radius:10px;overflow:hidden}
+.timer-fill{height:100%;border-radius:10px;background:linear-gradient(to right,var(--cyan),var(--navy));transition:width .5s linear}
+.timer-fill.urgent{background:linear-gradient(to right,#f97316,var(--danger))}
+.item-counter{font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap}
+
+/* ── TASK 1: SEÇİCİ DİKKAT ── */
+.t1-wrap{padding:20px 24px;flex:1;overflow:auto}
+.t1-target-box{display:flex;align-items:center;gap:14px;background:#f5f0ff;border:2px solid #c4b5fd;border-radius:12px;padding:12px 18px;margin-bottom:18px}
+.t1-target-box .label{font-size:14px;font-weight:800;color:#7c3aed}
+.t1-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.t1-cell{border-radius:10px;cursor:pointer;transition:all .15s;padding:6px;border:3px solid transparent;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.t1-cell:hover{background:#f0f4ff;transform:scale(1.08)}
+.t1-cell.found{background:#dcfce7;border-color:#22c55e;transform:scale(.95)}
+.t1-cell.wrong{background:#fee2e2;border-color:#ef4444;animation:wrongShake .3s}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.t1-stats{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.t1-stat{background:var(--bg);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;border:1.5px solid var(--line)}
+
+/* ── TASK 2: SÜRDÜRÜLen DİKKAT ── */
+.t2-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:32px}
+.t2-stimulus-box{width:180px;height:180px;border-radius:24px;background:var(--bg);border:3px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.t2-stimulus-box.showing{border-color:var(--navy);background:#f0f4ff;box-shadow:0 4px 20px rgba(26,46,90,.15)}
+.t2-stimulus-box.blank{background:#f8faff;border-color:#e0e7ef}
+.t2-btn{cursor:pointer;font-weight:900;padding:22px 56px;min-height:72px;border:none;border-radius:16px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;touch-action:manipulation;font-size:26px;cursor:pointer;transition:all .15s;box-shadow:0 4px 14px rgba(0,0,0,.15);letter-spacing:.5px}
+.t2-btn.go{background:linear-gradient(135deg,#0ea5e9,#0369a1);color:#fff}
+.t2-btn:active{transform:scale(.93)}
+.t2-btn:disabled{opacity:.35;cursor:not-allowed}
+.t2-feedback{display:none}
+.t2-feedback.hit{color:var(--ok)}
+.t2-feedback.miss{color:var(--danger)}
+.t2-feedback.fa{color:var(--warn)}
+
+/* ── TASK 3: BÖLÜNMÜŞ DİKKAT ── */
+.t3-wrap{flex:1;display:flex;flex-direction:column;padding:20px 24px;gap:16px}
+.t3-panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;align-items:stretch}
+.t3-panel{border:3px solid var(--line);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;transition:all .2s;min-height:200px;background:#fafbff}
+.t3-panel.target-side{border-color:var(--cyan);background:var(--cyan-light)}
+.t3-panel-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.t3-panel-target{font-size:12px;font-weight:700;color:var(--navy);background:#e0ecff;padding:4px 10px;border-radius:20px;margin-bottom:4px}
+.t3-stimulus{display:flex;align-items:center;justify-content:center;min-height:100px}
+.t3-responses{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+.t3-res-btn{cursor:pointer;border:none;padding:12px 8px;border-radius:12px;font-family:var(--font-body);font-weight:800;font-size:13px;cursor:pointer;transition:all .15s;line-height:1.3}
+.t3-res-btn:active{transform:scale(.93)}
+.t3-hint{font-size:13px;color:var(--muted);text-align:center;font-style:italic}
+
+/* ── TASK 4: DİKKATİ KAYDIRMA ── */
+.t4-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:28px}
+.t4-rule-badge{font-weight:900;padding:12px 28px;border-radius:40px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:22px;letter-spacing:.5px;transition:all .3s}
+.t4-rule-badge.rule-color{background:#fef3c7;color:#b45309;border:3px solid #fbbf24}
+.t4-rule-badge.rule-shape{background:#ede9fe;color:#7c3aed;border:3px solid #a78bfa}
+.t4-stimulus-area{min-width:160px;min-height:160px;background:var(--bg);border:3px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.t4-buttons{display:flex;gap:16px}
+.t4-btn{cursor:pointer;font-weight:900;padding:18px 44px;min-height:60px;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;touch-action:manipulation;font-size:22px;cursor:pointer;transition:all .15s;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.t4-btn.yes{background:linear-gradient(135deg,var(--ok),#15803d);color:#fff}
+.t4-btn.no{background:linear-gradient(135deg,#64748b,#475569);color:#fff}
+.t4-btn:active{transform:scale(.93)}
+.t4-btn:disabled{opacity:.3;cursor:not-allowed}
+.t4-feedback{display:none}
+.t4-phase-label{display:none}
+
+/* ── TASK 5: DÜRTÜ DENETİMİ ── */
+.t5-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:28px}
+.t5-box{width:200px;height:200px;border-radius:24px;display:flex;align-items:center;justify-content:center;transition:all .2s;border:4px solid transparent}
+.t5-box.go-box{background:#dcfce7;border-color:#22c55e}
+.t5-box.stop-box{background:#fee2e2;border-color:#ef4444}
+.t5-box.blank-box{background:var(--bg);border-color:var(--line)}
+.t5-label{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:22px;margin-top:8px;height:30px}
+.t5-label.go-label{color:var(--ok)}
+.t5-label.stop-label{color:var(--danger)}
+.t5-go-btn{cursor:pointer;font-weight:900;padding:22px 56px;min-height:72px;border:none;border-radius:16px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;touch-action:manipulation;font-size:26px;background:linear-gradient(135deg,#22c55e,var(--ok));color:#fff;cursor:pointer;transition:all .15s;box-shadow:0 4px 14px rgba(34,197,94,.3)}
+.t5-go-btn:active{transform:scale(.93)}
+.t5-go-btn:disabled{opacity:.35;cursor:not-allowed}
+.t5-feedback{display:none}
+
+/* ── TASK 6: ÇALIŞMA BELLEĞİ ── */
+.t6-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:28px}
+.t6-sequence-display{display:flex;gap:12px;justify-content:center;min-height:90px;align-items:center}
+.t6-seq-item{width:80px;height:80px;border-radius:16px;background:var(--bg);border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:42px;transition:all .3s}
+.t6-seq-item.showing{background:#e0f2fe;border-color:var(--cyan);transform:scale(1.08);box-shadow:0 4px 16px rgba(0,180,216,.25)}
+.t6-seq-item.hidden-slot{background:#f1f5f9;border:3px dashed #c0ccdd}
+.t6-instruction{font-size:16px;font-weight:700;color:var(--navy);text-align:center}
+.t6-options{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.t6-option-btn{cursor:pointer;width:72px;height:72px;border-radius:14px;border:3px solid var(--line);background:#fff;font-size:36px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.t6-option-btn:hover{border-color:var(--cyan);transform:scale(1.05)}
+.t6-option-btn.selected{border-color:var(--navy);background:#e0ecff;transform:scale(.97)}
+.t6-option-btn:disabled{opacity:.4;cursor:not-allowed}
+.t6-answer-slots{display:flex;gap:10px;justify-content:center}
+.t6-slot{width:72px;height:72px;border-radius:14px;border:3px dashed var(--cyan);background:var(--cyan-light);font-size:36px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.t6-slot.filled{border-style:solid;border-color:var(--navy);background:#e0ecff}
+.t6-check-btn{cursor:pointer;font-weight:900;padding:14px 32px;min-height:52px;touch-action:manipulation;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:18px;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;cursor:pointer;transition:all .15s;box-shadow:0 3px 10px rgba(26,46,90,.25)}
+.t6-check-btn:disabled{opacity:.4;cursor:not-allowed}
+.t6-trial-result{font-size:15px;font-weight:700;height:22px;text-align:center}
+.t6-trial-result.ok{color:var(--ok)}
+.t6-trial-result.fail{color:var(--danger)}
+
+/* ── RESULTS PANEL ── */
+.results-header{background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border-radius:var(--radius-xl);padding:28px 32px;margin-bottom:24px;box-shadow:var(--shadow-lg)}
+.results-header h2{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:26px;margin-bottom:8px}
+.results-header p{color:#c7d8f5;font-size:14px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.kpi-card{background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow);border:1.5px solid var(--line);text-align:center}
+.kpi-card .kpi-num{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:38px;line-height:1;color:var(--navy);margin-bottom:4px}
+.kpi-card .kpi-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.kpi-card.ram{border-color:var(--danger);background:#fff5f5}
+.kpi-card.ram .kpi-num{color:var(--danger)}
+.kpi-card.ram .kpi-label{color:var(--danger)}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.result-section{background:var(--white);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);border:1.5px solid var(--line)}
+.result-section h3{color:var(--navy);font-size:16px;font-weight:800;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:8px}
+.subscale-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.subscale-row:last-child{border-bottom:none}
+.subscale-name{flex:1;font-size:13px;font-weight:700;color:var(--text)}
+.subscale-bar-wrap{width:140px;height:8px;background:#e8edf5;border-radius:10px;overflow:hidden;flex-shrink:0}
+.subscale-bar{height:100%;border-radius:10px;transition:width .8s ease}
+.subscale-score{width:36px;text-align:right;font-size:13px;font-weight:800;color:var(--navy)}
+.badge-pill{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+.badge-ok{background:var(--ok-soft);color:var(--ok)}
+.badge-warn{background:var(--warn-soft);color:var(--warn)}
+.badge-danger{background:var(--danger-soft);color:var(--danger)}
+canvas#radarChart{display:block;max-width:100%;margin:0 auto}
+.clinical-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.clinical-card{background:var(--white);border-radius:var(--radius-lg);border:1.5px solid var(--line);border-left:5px solid var(--navy);padding:18px 20px;box-shadow:var(--shadow)}
+.clinical-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:12px}
+.clinical-card-top .ctitle{font-size:15px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:8px}
+.clinical-card-top .cscore{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:22px;color:var(--navy)}
+.clinical-card-text{font-size:13.5px;color:var(--text);line-height:1.65}
+.ram-score-box{background:linear-gradient(135deg,#fff5f5,#fff);border:2px solid var(--danger);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:24px}
+.ram-score-num{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:64px;color:var(--danger);line-height:1;flex-shrink:0}
+.ram-score-info h3{font-size:16px;font-weight:800;color:var(--danger);margin-bottom:6px}
+.ram-score-info p{font-size:13.5px;color:var(--text);line-height:1.6}
+.ram-scale{height:14px;border-radius:10px;background:linear-gradient(to right,#22c55e 0%,#f59e0b 40%,#f97316 70%,#ef4444 100%);position:relative;margin:12px 0 4px;border-radius:10px;overflow:visible}
+.ram-marker{position:absolute;top:-8px;width:3px;height:30px;background:var(--navy);border-radius:4px;transform:translateX(-50%)}
+.ram-marker::after{content:attr(data-val);position:absolute;top:32px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--navy);white-space:nowrap}
+.action-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;padding-top:8px}
+.btn-download{font-weight:900;padding:13px 28px;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,46,90,.3);display:flex;align-items:center;gap:8px}
+.btn-download:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,46,90,.35)}
+.btn-print{font-weight:900;padding:13px 28px;background:var(--white);color:var(--navy);border:2px solid var(--navy);border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;cursor:pointer;transition:all .2s}
+.btn-print:hover{background:#f0f4ff}
+.btn-restart{font-weight:900;padding:13px 28px;background:var(--white);color:var(--muted);border:2px solid var(--line);border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;cursor:pointer;transition:all .2s}
+.disclaimer-box{background:#f8faff;border:1.5px solid var(--line);border-radius:12px;padding:16px 20px;font-size:12.5px;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.disclaimer-box strong{color:var(--text)}
+
+/* ── MÜDAHALe PLANI PANELİ ── */
+.plan-header{background:linear-gradient(135deg,#065f46 0%,#047857 60%,#059669 100%);color:#fff;border-radius:var(--radius-xl);padding:28px 32px;margin-bottom:24px;box-shadow:var(--shadow-lg)}
+.plan-header h2{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:24px;margin-bottom:6px}
+.plan-header p{color:#a7f3d0;font-size:14px}
+.plan-intro-box{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:24px;box-shadow:var(--shadow)}
+.plan-intro-box .intro-title{font-size:15px;font-weight:800;color:#065f46;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.plan-intro-box p{font-size:14px;color:var(--text);line-height:1.7}
+.plan-area-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.plan-area-tab{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.plan-area-tab.active{color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.plan-no-issues{background:#f0fdf4;border:2px solid #86efac;border-radius:var(--radius-lg);padding:40px;text-align:center;margin-bottom:24px}
+.plan-no-issues .big-ok{font-size:64px;margin-bottom:12px}
+.plan-no-issues h3{font-size:20px;color:#15803d;font-weight:800;margin-bottom:8px}
+.plan-no-issues p{font-size:14px;color:#166534;max-width:480px;margin:0 auto;line-height:1.7}
+.plan-card{background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow);border:1.5px solid var(--line);overflow:hidden;margin-bottom:20px}
+.plan-card-header{padding:20px 24px;display:flex;align-items:center;gap:14px}
+.plan-card-header .ph-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;background:rgba(255,255,255,.25)}
+.plan-card-header h3{font-size:17px;font-weight:800;color:#fff;margin-bottom:2px}
+.plan-card-header p{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.4}
+.plan-card-body{padding:0}
+.plan-audience{border-bottom:1.5px solid var(--line)}
+.plan-audience:last-child{border-bottom:none}
+.plan-audience-header{padding:14px 24px;display:flex;align-items:center;gap:10px;cursor:pointer;background:#fafbff;transition:background .15s;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.plan-audience-header:hover{background:#f0f4ff}
+.plan-audience-header h4{font-size:14px;font-weight:800;color:var(--navy);flex:1}
+.plan-audience-header .aud-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.plan-audience-header .aud-icon.teacher{background:#eff6ff}
+.plan-audience-header .aud-icon.family{background:#f0fdf4}
+.plan-audience-header .toggle-arrow{font-size:14px;color:var(--muted);transition:transform .2s}
+.plan-audience-header.open .toggle-arrow{transform:rotate(180deg)}
+.plan-audience-body{display:none;padding:0 24px 20px}
+.plan-audience-body.open{display:block;animation:fadeSlide .25s ease}
+.plan-strategy{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed #e2e8f0}
+.plan-strategy:last-child{border-bottom:none}
+.plan-strategy-num{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;margin-top:1px}
+.plan-strategy-content{flex:1}
+.plan-strategy-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.plan-strategy-desc{font-size:13.5px;color:var(--text);line-height:1.65}
+.plan-strategy-tip{margin-top:6px;padding:7px 12px;background:#f8faff;border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;font-size:12.5px;color:var(--muted);font-style:italic}
+.plan-general{background:#fff;border-radius:var(--radius-lg);border:1.5px solid var(--line);padding:24px;margin-bottom:24px;box-shadow:var(--shadow)}
+.plan-general h3{color:var(--navy);font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.plan-general-items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.plan-general-item{background:#f8faff;border-radius:10px;padding:12px 14px;border:1.5px solid #e8edf5}
+.plan-general-item .gi-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:3px;display:flex;align-items:center;gap:6px}
+.plan-general-item p{font-size:12.5px;color:var(--text);line-height:1.6}
+.plan-action-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.btn-plan-dl{font-weight:900;padding:13px 28px;background:linear-gradient(135deg,#065f46,#047857);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(6,95,70,.3);display:flex;align-items:center;gap:8px}
+.btn-plan-dl:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,95,70,.35)}
+.plan-ref-box{background:#f8faff;border:1.5px solid var(--line);border-radius:12px;padding:16px 20px;font-size:12px;color:var(--muted);line-height:1.7}
+.plan-ref-box strong{color:var(--text);display:block;margin-bottom:6px}
+/* ═══════════════════════════════════════════════════════════════════
+   TEMEL YAPI — TAM EKRAN LAYOUT (iPad mini + tüm cihazlar)
+   Hedef: kaydırma OLMADAN tek ekrana sığma
+═══════════════════════════════════════════════════════════════════ */
+
+/* Tüm ekranı doldur, overflow'u gizle */
+html{
+  height:100%;
+  height:100dvh;
+}
+body{
+  height:100%;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  overscroll-behavior:none;
+  /* iOS Safari local file için -webkit-fill-available fallback */
+  min-height:-webkit-fill-available;
+}
+
+/* Header sabit yükseklik */
+.app-header{ flex-shrink:0 }
+
+/* Ana içerik alanı kalan tüm yüksekliği alır */
+.container{
+  flex:1;
+  min-height:0;        /* flex çocukta overflow çalışması için şart */
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  display:flex;
+  flex-direction:column;
+  padding:12px 14px;
+  max-width:980px;
+  margin:0 auto;
+  width:100%;
+}
+
+/* Tab bar sabit */
+.tabs-bar{ flex-shrink:0 }
+
+/* Test paneli: progress + task-area arasında alan bölüşümü */
+#panel-test{
+  flex:1;
+  min-height:0;
+  display:none;
+  flex-direction:column;
+}
+#panel-test.active{ display:flex }
+#panel-test .task-progress{ flex-shrink:0 }
+
+/* Görev alanı: panel içindeki tüm boşluğu doldur */
+#task-area{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+}
+
+/* Task wrap'lerin scroll etmesine izin ver (T1 çok eleman içerebilir) */
+.t1-wrap{ overflow-y:auto }
+.task-intro{ overflow-y:auto }
+
+/* Diğer paneller scroll edilebilir */
+#panel-info.active,
+#panel-results.active,
+#panel-plan.active{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+@media print{
+  html,body{ height:auto; overflow:visible; display:block }
+  .app-header,.tabs-bar,.task-progress,.action-row,.disclaimer-box{display:none!important}
+  .container{padding:0; display:block; overflow:visible}
+  .panel{display:none!important}
+  #panel-results{display:block!important}
+  .results-header{background:#1a2e5a!important;-webkit-print-color-adjust:exact}
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   iPAD MİNİ DİKEY  ≤ 850px genişlik
+   Gerçek kullanılabilir alan: ~744 × ~980px (Safari adres çubuğu dahil)
+═══════════════════════════════════════════════════════════════════ */
+@media screen and (max-width:850px){
+  /* Header */
+  .app-header{ padding:8px 14px; gap:10px; border-bottom-width:3px }
+  .app-header-logo{ width:34px; height:34px; font-size:18px; border-radius:10px }
+  .app-header-text h1{ font-size:14px; letter-spacing:0 }
+  .app-header-text p{ display:none }
+  .app-header-badges{ display:none }
+
+  /* Container */
+  .container{ padding:8px 10px }
+
+  /* Tabs */
+  .tabs-bar{ padding:3px; gap:2px; margin-bottom:8px; border-radius:12px }
+  .tab-btn{ padding:7px 4px; font-size:11px; border-radius:8px }
+  .tab-btn .tab-icon{ font-size:14px }
+
+  /* ── Info paneli ── */
+  .info-card{ padding:12px 14px; border-radius:16px }
+  .info-card h2{ font-size:15px; margin-bottom:2px }
+  .info-card .subtitle{ font-size:11.5px; margin-bottom:8px; line-height:1.4 }
+  .form-grid{ grid-template-columns:1fr 1fr; gap:7px }
+  .form-field.full,.form-field.half{ grid-column:1/-1 }
+  .form-label{ font-size:11.5px }
+  .form-input{ padding:8px 10px; font-size:16px; border-radius:8px }
+  .grade-cards{ gap:7px }
+  .grade-card{ padding:9px 6px; min-height:60px; border-radius:10px }
+  .grade-card .grade-num{ font-size:22px }
+  .grade-card .grade-age,.grade-card .grade-level{ font-size:10px }
+  .info-disclaimer{ padding:8px 10px; font-size:11px; margin-top:8px; border-radius:10px; line-height:1.4 }
+  .info-disclaimer strong{ margin-bottom:1px }
+  .btn-start{ padding:12px; font-size:15px; min-height:48px; margin-top:8px; border-radius:12px }
+
+  /* ── Görev ilerleme ── */
+  .task-progress{ padding:7px 12px; margin-bottom:7px; border-radius:12px }
+  .pip-circle{ width:24px; height:24px; font-size:10px }
+  .pip-label{ font-size:9px }
+  .task-pip:not(:last-child)::after{ top:11px }
+
+  /* ── Görev tanıtım ── */
+  .task-intro{ padding:12px 16px; gap:0 }
+  .task-intro-icon{ width:52px; height:52px; font-size:28px; margin-bottom:6px; border-radius:14px }
+  .task-intro h2{ font-size:18px; margin-bottom:2px }
+  .task-intro .task-subtitle{ margin-bottom:6px; font-size:11px }
+  .task-intro-card{ padding:9px 12px; margin-bottom:10px }
+  .task-intro-card .instruction-title{ font-size:13px; margin-bottom:8px }
+  .task-intro-card ul li{ font-size:12.5px }
+  .task-intro-card ul{ gap:5px }
+  .task-intro-demo{ padding:10px; margin-bottom:10px; gap:10px }
+  .btn-begin-task{ padding:11px 28px; font-size:15px; min-height:46px }
+
+  /* ── Geri sayım ── */
+  .countdown-num{ font-size:80px }
+  .countdown-msg{ font-size:16px }
+
+  /* ── Tamamlandı ── */
+  .task-complete-screen{ gap:10px; padding:20px }
+  .complete-icon{ font-size:56px }
+  .complete-title{ font-size:22px }
+  .complete-msg{ font-size:13px }
+  .btn-next-task{ padding:12px 28px; font-size:15px; min-height:46px }
+
+  /* ── Timer şeridi ── */
+  .timer-bar-wrap{ padding:7px 12px; gap:10px }
+  .timer-num{ font-size:18px; min-width:36px }
+  .timer-track{ height:8px }
+
+  /* ── T1 Yıldız Bul ── */
+  .t1-wrap{ padding:8px 12px }
+  .t1-target-box{ padding:7px 10px; margin-bottom:8px; border-radius:10px }
+
+  /* ── T2 Görünce Bas ── */
+  .t2-wrap{ gap:10px; padding:14px 16px }
+  .t2-stimulus-box{ width:120px; height:120px; border-radius:16px }
+  .t2-btn{ padding:14px 36px; font-size:21px; min-height:54px }
+
+  /* ── T3 Bölünmüş ── */
+  .t3-wrap{ padding:10px 12px; gap:8px }
+  .t3-panel{ padding:10px; min-height:130px }
+  .t3-res-btn{ padding:10px 6px; font-size:12px; min-height:50px; border-radius:10px }
+  .t3-responses{ gap:6px }
+
+  /* ── T4 Kaydırma ── */
+  .t4-wrap{ gap:10px; padding:14px 16px }
+  .t4-rule-badge{ font-size:16px; padding:8px 16px }
+  .t4-stimulus-area{ min-width:100px; min-height:100px; border-radius:16px }
+  .t4-btn{ padding:13px 28px; font-size:19px; min-height:50px; border-radius:10px }
+  .t4-buttons{ gap:10px }
+  .t4-phase-label{ font-size:11px }
+
+  /* ── T5 Dur/Devam ── */
+  .t5-wrap{ gap:10px; padding:14px 16px }
+  .t5-box{ width:140px; height:140px; border-radius:18px }
+  .t5-go-btn{ padding:14px 36px; font-size:21px; min-height:54px }
+
+  /* ── T6 Sıra Hatırla ── */
+  .t6-wrap{ gap:10px; padding:14px 16px }
+  .t6-seq-item{ width:58px; height:58px; font-size:28px; border-radius:12px }
+  .t6-option-btn{ width:58px; height:58px; min-width:58px; min-height:58px; font-size:26px; border-radius:12px }
+  .t6-slot{ width:58px; height:58px; min-width:58px; min-height:58px; font-size:26px; border-radius:10px }
+  .t6-check-btn{ padding:10px 22px; font-size:15px; min-height:44px }
+  .t6-instruction{ font-size:14px }
+
+  /* ── Sonuçlar ── */
+  .results-header{ padding:14px 18px; margin-bottom:10px; border-radius:16px }
+  .results-header h2{ font-size:18px }
+  .kpi-row{ gap:7px; margin-bottom:10px; grid-template-columns:repeat(2,1fr) }
+  .kpi-card{ padding:10px }
+  .kpi-card .kpi-num{ font-size:26px }
+  .kpi-card .kpi-label{ font-size:10px }
+  .results-grid{ grid-template-columns:1fr; gap:10px; margin-bottom:10px }
+  .subscale-bar-wrap{ width:90px }
+  .ram-score-box{ padding:14px 16px; gap:14px; margin-bottom:10px }
+  .ram-score-num{ font-size:44px }
+  .btn-download,.btn-print,.btn-restart,.btn-plan-dl{ padding:10px 18px; font-size:13px; min-height:44px }
+  .action-row{ gap:7px; margin-bottom:12px }
+
+  /* ── Müdahale planı ── */
+  .plan-header{ padding:14px 18px; margin-bottom:10px; border-radius:16px }
+  .plan-general-items{ grid-template-columns:1fr }
+  .plan-audience-header{ padding:12px 14px; min-height:50px }
+  .plan-audience-body{ padding:0 14px 12px }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   iPAD MİNİ YATAY + kısa ekranlar  (yükseklik ≤ 640px)
+═══════════════════════════════════════════════════════════════════ */
+@media screen and (max-height:640px){
+  .app-header{ padding:5px 14px; border-bottom-width:2px }
+  .app-header-logo{ width:28px; height:28px; font-size:15px }
+  .app-header-text h1{ font-size:13px }
+  .container{ padding:6px 10px }
+  .tabs-bar{ margin-bottom:6px; padding:2px }
+  .tab-btn{ padding:5px 4px; font-size:10px }
+  .tab-btn .tab-icon{ font-size:12px }
+  .task-progress{ padding:5px 10px; margin-bottom:5px }
+  .pip-circle{ width:20px; height:20px; font-size:9px }
+  .pip-label{ display:none }
+  .task-intro-icon{ width:40px; height:40px; font-size:22px; margin-bottom:4px }
+  .task-intro h2{ font-size:16px }
+  .task-intro-card ul li{ font-size:12px }
+  .task-intro-demo{ display:none }
+  .t2-stimulus-box,.t5-box{ width:100px; height:100px }
+  .t4-stimulus-area{ min-width:80px; min-height:80px }
+  .countdown-num{ font-size:64px }
+  .complete-icon{ font-size:40px }
+  .complete-title{ font-size:18px }
+  .info-disclaimer{ display:none }
+  .info-card .subtitle{ display:none }
+  .form-grid{ gap:5px }
+  .form-input{ padding:6px 9px }
+  .grade-card{ padding:7px 5px; min-height:52px }
+  .grade-card .grade-num{ font-size:19px }
+  .btn-start{ padding:10px; font-size:14px; min-height:42px }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DOKUNMATIK — hover yerine :active
+═══════════════════════════════════════════════════════════════════ */
+@media (pointer:coarse),(hover:none){
+  .grade-card:hover{ border-color:var(--line); background:#fff; transform:none }
+  .grade-card.selected:hover{ border-color:var(--navy); background:var(--navy); color:#fff }
+  .grade-card:active{ border-color:var(--cyan); background:var(--cyan-light); transform:scale(.97) }
+  .grade-card.selected:active{ border-color:var(--navy); background:var(--navy) }
+  .tab-btn:hover{ background:transparent; color:var(--muted) }
+  .tab-btn.active:hover{ background:var(--navy); color:#fff }
+  .btn-start:hover,.btn-begin-task:hover,.btn-next-task:hover{ transform:none }
+  .btn-start:active,.btn-begin-task:active,.btn-next-task:active{ transform:scale(.97) }
+  .t1-cell:hover{ transform:none; border-color:transparent; background:transparent }
+  .t1-cell:active{ transform:scale(.88) }
+  .t2-btn:active,.t3-res-btn:active,.t4-btn:active,.t5-go-btn:active,
+  .t6-option-btn:active,.btn-download:active,.btn-plan-dl:active{ transform:scale(.93) }
+}
+</style>
+</head>
+<body ontouchstart="">
+
+<header class="app-header">
+  <div class="app-header-logo">🧠</div>
+  <div class="app-header-text">
+    <h1>Dikkat Değerlendirme Testi</h1>
+    <p>6–10 Yaş Grubu | Performansa Dayalı Bireysel Uygulama | PDR Kullanımına Yönelik</p>
+  </div>
+  <div class="app-header-badges">
+    <span class="badge">6 Alt Ölçek</span>
+    <span class="badge">1–4. Sınıf</span>
+    <span class="badge">Otomatik Puanlama</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" id="tab-info" onclick="goTab('info')" ontouchstart="">
+      <span class="tab-icon">📋</span><span>Öğrenci Bilgileri</span>
+    </button>
+    <button class="tab-btn" id="tab-test" onclick="goTab('test')" ontouchstart="" disabled>
+      <span class="tab-icon">🎯</span><span>Test</span>
+    </button>
+    <button class="tab-btn" id="tab-results" onclick="goTab('results')" ontouchstart="" disabled>
+      <span class="tab-icon">📊</span><span>Değerlendirme</span>
+    </button>
+    <button class="tab-btn" id="tab-plan" onclick="goTab('plan')" ontouchstart="" disabled>
+      <span class="tab-icon">🗂</span><span>Müdahale Planı</span>
+    </button>
+  </div>
+
+  <!-- ══ PANEL: INFO ══ -->
+  <div id="panel-info" class="panel active">
+    <div class="info-card">
+      <h2>Öğrenci Bilgileri ve Sınıf Düzeyi</h2>
+      <p class="subtitle">Lütfen öğrenciye ait bilgileri eksiksiz giriniz. Sınıf seçimi, test sorularının zorluk düzeyini ve görsellerin büyüklüğünü belirler.</p>
+      <div class="form-grid">
+        <div class="form-field half">
+          <label class="form-label">Öğrencinin Adı Soyadı <span class="req">*</span></label>
+          <input class="form-input" id="f-name" type="text" placeholder="Örn. Ahmet Y.">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Uygulama Tarihi <span class="req">*</span></label>
+          <input class="form-input" id="f-date" type="date">
+        </div>
+        <div class="form-field half">
+          <label class="form-label">Okul Adı</label>
+          <input class="form-input" id="f-school" type="text" placeholder="Örn. Atatürk İlkokulu">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Dosya / Takip No</label>
+          <input class="form-input" id="f-fileno" type="text" placeholder="Örn. 2026-001">
+        </div>
+        <div class="form-field full">
+          <label class="form-label">Psikolojik Danışman / Uygulayan</label>
+          <input class="form-input" id="f-counselor" type="text" placeholder="Ad Soyad">
+        </div>
+        <div class="form-field full">
+          <label class="form-label">Başvuru Nedeni / Gözlem Bağlamı</label>
+          <input class="form-input" id="f-reason" type="text" placeholder="Örn. Öğretmen referansı – sınıfta dikkat dağıtıcılık, işi tamamlayamama">
+        </div>
+        <div class="form-field full">
+          <label class="form-label">Sınıf Düzeyi Seçiniz <span class="req">*</span></label>
+          <div class="grade-cards" id="gradeCards">
+            <input class="grade-radio" type="radio" name="grade" id="gc1" value="1" onchange="selectGrade(1)">
+            <label class="grade-card" for="gc1">
+              <div class="grade-num">1</div>
+              <div class="grade-age">6–7 yaş</div>
+              <div class="grade-level">Temel Düzey</div>
+            </label>
+            <input class="grade-radio" type="radio" name="grade" id="gc2" value="2" onchange="selectGrade(2)">
+            <label class="grade-card" for="gc2">
+              <div class="grade-num">2</div>
+              <div class="grade-age">7–8 yaş</div>
+              <div class="grade-level">Başlangıç</div>
+            </label>
+            <input class="grade-radio" type="radio" name="grade" id="gc3" value="3" onchange="selectGrade(3)">
+            <label class="grade-card" for="gc3">
+              <div class="grade-num">3</div>
+              <div class="grade-age">8–9 yaş</div>
+              <div class="grade-level">Orta Düzey</div>
+            </label>
+            <input class="grade-radio" type="radio" name="grade" id="gc4" value="4" onchange="selectGrade(4)">
+            <label class="grade-card" for="gc4">
+              <div class="grade-num">4</div>
+              <div class="grade-age">9–10 yaş</div>
+              <div class="grade-level">İleri Düzey</div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="info-disclaimer">
+        <strong>⚠ Uygulayıcı Notu</strong>
+        Bu araç, 1–4. sınıf öğrencilerinde dikkatin 6 bileşenini performansa dayalı olarak tarayan bir <em>ön değerlendirme testidir</em>. Klinik tanı aracı değildir. Sonuçlar; sınıf içi gözlem, öğretmen ve aile görüşleri ile birlikte yorumlanmalıdır. Test bireysel olarak uygulanır; uygulayıcı öğrencinin yanında bulunur ve gerektiğinde yönergeleri sözlü olarak destekler.
+      </div>
+      <button class="btn-start" onclick="startTest()" ontouchstart="">✦ Teste Başla</button>
+    </div>
+  </div>
+
+  <!-- ══ PANEL: TEST ══ -->
+  <div id="panel-test" class="panel">
+    <div class="task-progress" id="taskProgress"></div>
+    <div id="task-area"></div>
+  </div>
+
+  <!-- ══ PANEL: RESULTS ══ -->
+  <div id="panel-results" class="panel">
+    <div class="results-header">
+      <h2>📊 Değerlendirme Raporu</h2>
+      <p id="results-student-line">—</p>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-num" id="kpi-overall">–</div>
+        <div class="kpi-label">Genel Performans (%)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" id="kpi-strongest">–</div>
+        <div class="kpi-label">En Güçlü Bileşen</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" id="kpi-weakest">–</div>
+        <div class="kpi-label">Öncelikli İzlem Alanı</div>
+      </div>
+      <div class="kpi-card ram">
+        <div class="kpi-num" id="kpi-ram">–</div>
+        <div class="kpi-label">RAM Skoru / 100</div>
+      </div>
+    </div>
+
+    <div class="results-grid">
+      <div class="result-section">
+        <h3>📐 Alt Ölçek Puanları</h3>
+        <div id="subscale-list"></div>
+      </div>
+      <div class="result-section">
+        <h3>🕸 Dikkat Profili</h3>
+        <canvas id="radarChart" width="340" height="280"></canvas>
+      </div>
+    </div>
+
+    <div class="ram-score-box">
+      <div class="ram-score-num" id="ram-big">–</div>
+      <div class="ram-score-info">
+        <h3 id="ram-label">RAM Yönlendirme Skoru</h3>
+        <div class="ram-scale" id="ram-scale"></div>
+        <p id="ram-text"></p>
+      </div>
+    </div>
+
+    <div class="clinical-cards" id="clinical-cards"></div>
+
+    <div class="action-row">
+      <button class="btn-download" onclick="downloadDocx()" ontouchstart="">⬇ DOCX Rapor İndir</button>
+      <button class="btn-print" onclick="window.print()" ontouchstart="">🖨 Yazdır</button>
+      <button class="btn-download" style="background:linear-gradient(135deg,#065f46,#047857)" onclick="goTab('plan')" ontouchstart="">🗂 Müdahale Planı →</button>
+      <button class="btn-restart" onclick="restartTest()" ontouchstart="">↺ Yeni Test</button>
+    </div>
+    <div class="disclaimer-box">
+      <strong>Önemli Not:</strong> Bu rapor bir ön tarama çıktısıdır ve klinik ya da tıbbi tanı yerine geçmez. Test sonuçları; öğrencinin gelişimsel öyküsü, akademik performansı, sınıf içi gözlemler, öğretmen ve aile görüşleri ile birlikte değerlendirilmelidir. Belirgin güçlük göstergesi olan öğrenciler için RAM değerlendirmesi ve çoklu bilgi kaynağına dayalı karar süreci önerilir.
+    </div>
+  </div>
+
+  <!-- ══ PANEL: MÜDAHALE PLANI ══ -->
+  <div id="panel-plan" class="panel">
+    <div class="plan-header">
+      <h2>🗂 Müdahale Planı</h2>
+      <p id="plan-student-line">—</p>
+    </div>
+    <div id="plan-content"></div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ════════════════════════════════════════════════════════
+//  GLOBAL STATE
+// ════════════════════════════════════════════════════════
+const S = {
+  grade: 0,
+  student: {},
+  currentTask: 0,
+  taskResults: {},
+  // per-task runtime state
+  t1: null, t2: null, t3: null, t4: null, t5: null, t6: null,
+  timers: [],
+};
+
+// ════════════════════════════════════════════════════════
+//  GRADE CONFIG
+// ════════════════════════════════════════════════════════
+const GC = {
+  1:{ sz:78, t1:{cols:3,rows:4,targets:4,tl:35,di:['circle','triangle','square']},
+      t2:{n:16,nt:8,show:1100,blank:700},
+      t3:{pairs:12,show:1300},
+      t4:{p1:5,p2:5,p3:8,shapes:['circle','triangle'],colors:['mavi','kırmızı']},
+      t5:{n:20,go:14,nogo:6,disp:1050},
+      t6:{len:3,trials:3,pool:['🍎','🍊','🍋','🍇','🍓']} },
+  2:{ sz:64, t1:{cols:4,rows:5,targets:6,tl:40,di:['circle','triangle','square','diamond']},
+      t2:{n:20,nt:10,show:950,blank:550},
+      t3:{pairs:14,show:1150},
+      t4:{p1:5,p2:5,p3:10,shapes:['circle','triangle','square'],colors:['mavi','kırmızı','yeşil']},
+      t5:{n:24,go:16,nogo:8,disp:900},
+      t6:{len:4,trials:3,pool:['🐶','🐱','🐰','🦊','🐻','🐼']} },
+  3:{ sz:54, t1:{cols:5,rows:6,targets:8,tl:45,di:['circle','triangle','square','diamond','heart']},
+      t2:{n:24,nt:12,show:850,blank:450},
+      t3:{pairs:16,show:1000},
+      t4:{p1:6,p2:6,p3:12,shapes:['circle','triangle','square'],colors:['mavi','kırmızı','yeşil','sarı']},
+      t5:{n:28,go:18,nogo:10,disp:800},
+      t6:{len:4,trials:4,pool:['🌟','🌙','☀️','🌈','🌊','🌺','🍀']} },
+  4:{ sz:46, t1:{cols:6,rows:7,targets:10,tl:50,di:['circle','triangle','square','diamond','heart','pentagon']},
+      t2:{n:30,nt:15,show:750,blank:380},
+      t3:{pairs:20,show:900},
+      t4:{p1:6,p2:6,p3:14,shapes:['circle','triangle','square','diamond'],colors:['mavi','kırmızı','yeşil','sarı']},
+      t5:{n:30,go:20,nogo:10,disp:700},
+      t6:{len:5,trials:4,pool:['🔴','🟠','🟡','🟢','🔵','🟣','⚫','⚪']} },
+};
+
+// ════════════════════════════════════════════════════════
+//  SVG SHAPE HELPERS
+// ════════════════════════════════════════════════════════
+const SHAPE_COLORS = ['#e74c3c','#3498db','#27ae60','#f39c12','#9b59b6','#1abc9c','#e67e22','#e91e63'];
+const COLOR_MAP = {mavi:'#3498db',kırmızı:'#e74c3c',yeşil:'#27ae60',sarı:'#f39c12',mor:'#9b59b6'};
+const SHAPE_NAMES_TR = {circle:'Daire',triangle:'Üçgen',square:'Kare',diamond:'Baklava',heart:'Kalp',pentagon:'Beşgen',star:'Yıldız'};
+
+function makeSVG(shape, color, sz){
+  const h = `<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">`;
+  const svgs = {
+    star: `${h}<polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="${color}" stroke="${color}" stroke-width=".3"/></svg>`,
+    circle: `${h}<circle cx="12" cy="12" r="9.5" fill="${color}"/></svg>`,
+    triangle: `${h}<polygon points="12,2.5 22,21.5 2,21.5" fill="${color}"/></svg>`,
+    square: `${h}<rect x="2.5" y="2.5" width="19" height="19" rx="2.5" fill="${color}"/></svg>`,
+    diamond: `${h}<polygon points="12,2 22,12 12,22 2,12" fill="${color}"/></svg>`,
+    heart: `${h}<path d="M12 21C12 21 3 14.5 3 8.5 3 5.4 5.4 3 8.5 3 10.2 3 11.7 3.8 12 4.5 12.3 3.8 13.8 3 15.5 3 18.6 3 21 5.4 21 8.5 21 14.5 12 21 12 21Z" fill="${color}"/></svg>`,
+    pentagon: `${h}<polygon points="12,2 21.5,8.5 17.9,20 6.1,20 2.5,8.5" fill="${color}"/></svg>`,
+    hexagon: `${h}<polygon points="12,2 21,7 21,17 12,22 3,17 3,7" fill="${color}"/></svg>`,
+  };
+  return svgs[shape] || svgs.circle;
+}
+
+function makeSVGWithStroke(shape, color, sz, strokeColor='#fff', sw=2){
+  const h = `<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">`;
+  const svgs = {
+    star: `${h}<polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    circle: `${h}<circle cx="12" cy="12" r="9" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    triangle: `${h}<polygon points="12,3 22,21 2,21" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    square: `${h}<rect x="3" y="3" width="18" height="18" rx="2" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    diamond: `${h}<polygon points="12,2 22,12 12,22 2,12" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    heart: `${h}<path d="M12 21C12 21 3 14.5 3 8.5 3 5.4 5.4 3 8.5 3 10.2 3 11.7 3.8 12 4.5 12.3 3.8 13.8 3 15.5 3 18.6 3 21 5.4 21 8.5 21 14.5 12 21 12 21Z" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    pentagon: `${h}<polygon points="12,2 21.5,8.5 17.9,20 6.1,20 2.5,8.5" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+    hexagon: `${h}<polygon points="12,2 21,7 21,17 12,22 3,17 3,7" fill="${color}" stroke="${strokeColor}" stroke-width="${sw}"/></svg>`,
+  };
+  return svgs[shape] || svgs.circle;
+}
+
+function randItem(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function randColor(){ return randItem(SHAPE_COLORS); }
+
+// ════════════════════════════════════════════════════════
+//  UI HELPERS
+// ════════════════════════════════════════════════════════
+function goTab(t){
+  ['info','test','results','plan'].forEach(id=>{
+    document.getElementById('panel-'+id).classList.toggle('active',id===t);
+    document.getElementById('tab-'+id).classList.toggle('active',id===t);
+  });
+}
+
+function selectGrade(g){
+  S.grade = g;
+  // Radio input CSS :checked ile görsel durumu halleder — JS'e gerek yok
+  // Ama restartTest için manuel set gerekebilir
+}
+
+// Grade cards are now real <button> elements — no JS binding needed
+
+function clearTimers(){
+  S.timers.forEach(t=>clearTimeout(t)||clearInterval(t));
+  S.timers = [];
+}
+function addTimer(fn,ms){ const t=setTimeout(fn,ms); S.timers.push(t); return t; }
+function addInterval(fn,ms){ const t=setInterval(fn,ms); S.timers.push(t); return t; }
+
+// ════════════════════════════════════════════════════════
+//  TASK PROGRESS DISPLAY
+// ════════════════════════════════════════════════════════
+const TASK_META = [
+  {key:'t1',label:'Seçici',icon:'🔍',color:'#7c3aed'},
+  {key:'t2',label:'Sürdürülen',icon:'⏱',color:'#0369a1'},
+  {key:'t3',label:'Bölünmüş',icon:'👀',color:'#0891b2'},
+  {key:'t4',label:'Kaydırma',icon:'🔄',color:'#b45309'},
+  {key:'t5',label:'Dürtü',icon:'🛑',color:'#b91c1c'},
+  {key:'t6',label:'Bellek',icon:'🧠',color:'#15803d'},
+];
+
+function renderProgress(){
+  const el = document.getElementById('taskProgress');
+  el.innerHTML = `<div class="task-progress-track">` +
+    TASK_META.map((tm,i)=>{
+      const n = i+1;
+      const isDone = n < S.currentTask;
+      const isActive = n === S.currentTask;
+      const cls = isDone ? 'done' : isActive ? 'active' : '';
+      return `<div class="task-pip ${cls}">
+        <div class="pip-circle">${isDone?'✓':(isActive?tm.icon:n)}</div>
+        <div class="pip-label">${tm.label}</div>
+      </div>`;
+    }).join('') + `</div>`;
+}
+
+// ════════════════════════════════════════════════════════
+//  START TEST
+// ════════════════════════════════════════════════════════
+function startTest(){
+  const name = document.getElementById('f-name').value.trim();
+  if(!name){ alert('Lütfen öğrencinin adını giriniz.'); return; }
+  if(!S.grade){ alert('Lütfen sınıf düzeyini seçiniz.'); return; }
+  const date = document.getElementById('f-date').value;
+  if(!date){ alert('Lütfen uygulama tarihini giriniz.'); return; }
+  S.student = {
+    name, date,
+    school: document.getElementById('f-school').value,
+    fileno: document.getElementById('f-fileno').value,
+    counselor: document.getElementById('f-counselor').value,
+    reason: document.getElementById('f-reason').value,
+  };
+  document.getElementById('tab-test').disabled = false;
+  goTab('test');
+  S.currentTask = 1;
+  renderProgress();
+  showTaskIntro(1);
+}
+
+// ════════════════════════════════════════════════════════
+//  COUNTDOWN → THEN RUN TASK
+// ════════════════════════════════════════════════════════
+function runCountdown(onDone){
+  const area = document.getElementById('task-area');
+  let n = 3;
+  const show = ()=>{
+    area.innerHTML = `<div class="countdown-screen">
+      <div class="countdown-num" style="animation:countPulse .85s ease forwards">${n}</div>
+      <div class="countdown-msg">HAZIR OL…</div>
+    </div>`;
+    if(n === 0){
+      area.innerHTML = `<div class="countdown-screen">
+        <div class="countdown-num" style="font-size:80px;animation:countPulse .6s ease forwards;color:#27ae60">BAŞLA!</div>
+      </div>`;
+      addTimer(onDone, 700);
+      return;
+    }
+    n--;
+    addTimer(show, 900);
+  };
+  show();
+}
+
+function showTaskComplete(taskNum){
+  clearTimers();
+  const msgs = ['Harikasın! 🌟','Süper! 💪','Çok iyisin! 🎉','Devam et! ⭐','Mükemmel! 🏆','Bravo! 🌈'];
+  const area = document.getElementById('task-area');
+  const isLast = taskNum === 6;
+  area.innerHTML = `<div class="task-complete-screen">
+    <div class="complete-icon">✅</div>
+    <div class="complete-title">${msgs[taskNum-1]}</div>
+    <div class="complete-msg">${isLast ? 'Tüm görevler tamamlandı! Sonuçlara geçebiliriz.' : 'Bu görevi tamamladın. Bir sonrakine geçelim.'}</div>
+    <button class="btn-next-task" id="btn-next-task">${isLast?'Sonuçları Gör →':'Devam →'}</button>
+  </div>`;
+  requestAnimationFrame(()=>{
+    const bnext = document.getElementById('btn-next-task');
+    if(!bnext) return;
+    const action = isLast ? showResults : nextTask;
+    let touching=false;
+    bnext.addEventListener('touchend',(e)=>{ e.preventDefault(); touching=true; action(); setTimeout(()=>{touching=false;},600); },{passive:false});
+    bnext.addEventListener('click',()=>{ if(!touching) action(); });
+  });
+}
+
+function nextTask(){
+  S.currentTask++;
+  renderProgress();
+  showTaskIntro(S.currentTask);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK INTROS
+// ════════════════════════════════════════════════════════
+const INTROS = [
+  { // T1
+    icon:'🔍', bg:'#f5f0ff', color:'#7c3aed', sub:'Seçici Dikkat',
+    title:'Yıldızları Bul!',
+    lines:[
+      'Ekranda farklı şekiller göreceksin.',
+      'Sadece ⭐ <strong>YILDIZ</strong> şekillerine dokun (ya da tıkla).',
+      'Diğer şekillere dokunma — dikkatli ol!',
+      'Süren dolmadan kaç tane yıldız bulabilirsin?',
+    ],
+    demo: ()=> {
+      const shapes = ['circle','triangle','star','square','star','diamond'];
+      const cols = ['#e74c3c','#3498db','#f39c12','#9b59b6','#27ae60','#e67e22'];
+      return shapes.map((s,i)=>`<div style="display:flex;flex-direction:column;align-items:center">
+        ${makeSVG(s,cols[i],52)}
+        <span style="font-size:11px;margin-top:4px;font-weight:700;color:${s==='star'?'#7c3aed':'#aaa'}">${s==='star'?'✓ Bu!':''}</span>
+      </div>`).join('');
+    }
+  },
+  { // T2
+    icon:'⏱', bg:'#e0f2fe', color:'#0369a1', sub:'Sürdürülen Dikkat',
+    title:'Görünce Bas!',
+    lines:[
+      'Ekranın ortasında birer birer şekiller çıkacak.',
+      '❤️ <strong>KALP</strong> şeklini görünce hemen "GÖRDÜM!" düğmesine bas.',
+      'Başka şekiller için düğmeye basma.',
+      'Dikkatini kaybetme, hep aynı şekli bekle!',
+    ],
+    demo: ()=> `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        ${makeSVGWithStroke('heart','#e91e63',64,'#fff',2)}
+        <span class="demo-label" style="color:#0369a1">❤ Kalp görünce BAS!</span>
+      </div>
+      <div style="font-size:28px;color:#555">→</div>
+      <div style="background:#0369a1;color:#fff;padding:12px 24px;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:18px">GÖRDÜM!</div>
+    `
+  },
+  { // T3
+    icon:'👀', bg:'#e0f7ff', color:'#0891b2', sub:'Bölünmüş Dikkat',
+    title:'İki Tarafı Gözle!',
+    lines:[
+      'Ekranda sol ve sağ olmak üzere İKİ kutu göreceksin.',
+      'Her iki kutuda da birer şekil belirecek.',
+      'Doğru cevabı 4 düğmeden birine basarak ver:',
+      '<strong>SADECE SOL</strong> / <strong>SADECE SAĞ</strong> / <strong>İKİSİ DE</strong> / <strong>HİÇBİRİ</strong>',
+      'Her iki tarafı aynı anda izlemeye çalış!',
+    ],
+    demo: ()=> `
+      <div style="display:flex;gap:12px;align-items:center">
+        <div style="width:80px;height:80px;border:3px solid #0891b2;border-radius:12px;background:#e0f7ff;display:flex;align-items:center;justify-content:center">${makeSVG('star','#f39c12',48)}</div>
+        <div style="font-size:13px;font-weight:700;color:#0891b2">SOL = Yıldız<br>(Hedef ✓)</div>
+      </div>
+      <div style="font-size:22px;color:#aaa">|</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div style="width:80px;height:80px;border:3px solid #ccc;border-radius:12px;background:#f8faff;display:flex;align-items:center;justify-content:center">${makeSVG('circle','#3498db',48)}</div>
+        <div style="font-size:13px;font-weight:700;color:#888">SAĞ = Daire<br>(Hedef değil)</div>
+      </div>
+    `
+  },
+  { // T4
+    icon:'🔄', bg:'#fffbeb', color:'#b45309', sub:'Dikkati Kaydırma / Esneklik',
+    title:'Kurala Bak!',
+    lines:[
+      'Her seferinde bir renkli şekil göreceksin.',
+      'Üstte bir kural yazacak: <strong>RENK mi?</strong> ya da <strong>ŞEKİL mi?</strong>',
+      '<strong>RENK mi?</strong>: Yalnızca belirtilen renkteyse "EVET" bas.',
+      '<strong>ŞEKİL mi?</strong>: Yalnızca belirtilen şekildeyse "EVET" bas.',
+      'Kural aniden değişebilir, dikkat et!',
+    ],
+    demo: ()=> `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="background:#fef3c7;border:2px solid #fbbf24;border-radius:20px;padding:8px 16px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;color:#b45309">RENK mi? → MAVİ</div>
+        ${makeSVGWithStroke('square','#3498db',60,'#fff',2)}
+        <span style="font-size:12px;font-weight:700;color:#27ae60">→ EVET (Mavi!)</span>
+      </div>
+      <div style="font-size:22px;color:#aaa">|</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="background:#ede9fe;border:2px solid #a78bfa;border-radius:20px;padding:8px 16px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;color:#7c3aed">ŞEKİL mi? → DAİRE</div>
+        ${makeSVGWithStroke('triangle','#3498db',60,'#fff',2)}
+        <span style="font-size:12px;font-weight:700;color:#e74c3c">→ HAYIR (Daire değil)</span>
+      </div>
+    `
+  },
+  { // T5
+    icon:'🛑', bg:'#fff5f5', color:'#b91c1c', sub:'Dürtü Denetimi',
+    title:'Dur / Devam!',
+    lines:[
+      'Ekranda bir şekil belirecek. Çok hızlı karar ver!',
+      '🟢 <strong>YEŞİL KUTUDA</strong> çıkarsa → "DEVAM!" düğmesine BAS!',
+      '🔴 <strong>KIRMIZI KUTUDA</strong> çıkarsa → ASLA basma, bekle!',
+      'Çabuk davranmaya çalış ama kırmızıda baskıya kapılma!',
+    ],
+    demo: ()=> `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:80px;height:80px;background:#dcfce7;border:3px solid #22c55e;border-radius:14px;display:flex;align-items:center;justify-content:center">${makeSVG('star','#f39c12',52)}</div>
+        <span style="font-size:12px;font-weight:800;color:#16a34a">→ BAS!</span>
+      </div>
+      <div style="font-size:22px;color:#aaa">|</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="width:80px;height:80px;background:#fee2e2;border:3px solid #ef4444;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative">
+          ${makeSVG('star','#f39c12',52)}
+          <span style="position:absolute;font-size:36px">✋</span>
+        </div>
+        <span style="font-size:12px;font-weight:800;color:#dc2626">→ BASMA!</span>
+      </div>
+    `
+  },
+  { // T6
+    icon:'🧠', bg:'#f0fdf4', color:'#15803d', sub:'Çalışma Belleği / İşitsel Yönerge',
+    title:'Sırayı Hatırla!',
+    lines:[
+      'Birer birer resimler çıkacak, sonra kaybolacak.',
+      'Hepsinin sırasını aklında tut!',
+      'Resimler kaybolunca, aynı sırayla tıkla.',
+      'Eksiksiz hatırlarsan tam puan!',
+    ],
+    demo: ()=> {
+      const items = ['🍎','🍊','🍋'];
+      return `<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+        <div style="display:flex;gap:8px">${items.map(e=>`<div style="width:60px;height:60px;border:3px solid #22c55e;border-radius:12px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;font-size:32px">${e}</div>`).join('')}</div>
+        <div style="font-size:12px;font-weight:800;color:#15803d;letter-spacing:.5px">BU SIRAYA GÖR →</div>
+        <div style="display:flex;gap:8px">${shuffle(items).map(e=>`<div style="width:60px;height:60px;border:2px dashed #86efac;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer">${e}</div>`).join('')}</div>
+        <div style="font-size:12px;color:#888">Karışık seçeneklerden doğru sırayla tıkla</div>
+      </div>`;
+    }
+  },
+];
+
+function showTaskIntro(n){
+  clearTimers();
+  const cfg = INTROS[n-1];
+  const area = document.getElementById('task-area');
+  area.innerHTML = `<div class="task-intro">
+    <div class="task-intro-icon" style="background:${cfg.bg}">${cfg.icon}</div>
+    <p class="task-subtitle" style="color:${cfg.color}">Görev ${n} / 6 — ${cfg.sub}</p>
+    <h2>${cfg.title}</h2>
+    <div class="task-intro-card">
+      <div class="instruction-title" style="color:${cfg.color}">📌 Nasıl Yapılır?</div>
+      <ul>${cfg.lines.map(l=>`<li>${l}</li>`).join('')}</ul>
+    </div>
+    <p style="font-size:13px;font-weight:700;color:#64748b;margin-bottom:10px">Örnek:</p>
+    <div class="task-intro-demo">${cfg.demo()}</div>
+    <button class="btn-begin-task" id="btn-begin-task" style="background:linear-gradient(135deg,${cfg.color},${cfg.color}dd)">Hazırım, Başla! →</button>
+  </div>`;
+  // Touch + click for begin button
+  requestAnimationFrame(()=>{
+    const bb = document.getElementById('btn-begin-task');
+    if(!bb) return;
+    let touching=false;
+    bb.addEventListener('touchend',(e)=>{ e.preventDefault(); touching=true; startCountdown(n); setTimeout(()=>{touching=false;},600); },{passive:false});
+    bb.addEventListener('click',()=>{ if(!touching) startCountdown(n); });
+  });
+}
+
+function startCountdown(n){
+  runCountdown(()=> { 
+    const runners = [null,runTask1,runTask2,runTask3,runTask4,runTask5,runTask6];
+    runners[n]();
+  });
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 1 — SEÇİCİ DİKKAT
+// ════════════════════════════════════════════════════════
+function runTask1(){
+  const cfg = GC[S.grade].t1;
+  const sz = GC[S.grade].sz;
+  const total = cfg.cols * cfg.rows;
+  const allShapes = Array.from({length:total},(_,i)=>i);
+  const targetIdx = new Set(shuffle(allShapes).slice(0,cfg.targets));
+  
+  const items = allShapes.map(i=>({
+    shape: targetIdx.has(i) ? 'star' : randItem(cfg.di),
+    color: randColor(),
+    isTarget: targetIdx.has(i),
+    state: 'idle', // idle | found | wrong
+  }));
+  
+  S.t1 = { items, hits:0, fa:0, targets:cfg.targets, timeLeft:cfg.tl, timerRef:null };
+  
+  const area = document.getElementById('task-area');
+  renderT1(area, items, sz, cfg);
+  
+  S.t1.timerRef = addInterval(()=>{
+    S.t1.timeLeft--;
+    const fill = document.getElementById('t1-timer-fill');
+    const num = document.getElementById('t1-timer-num');
+    const pct = S.t1.timeLeft / cfg.tl * 100;
+    if(fill){ fill.style.width = pct + '%'; fill.className = 'timer-fill' + (pct<25?' urgent':''); }
+    if(num) num.textContent = S.t1.timeLeft + 's';
+    if(S.t1.timeLeft <= 0){
+      clearInterval(S.t1.timerRef);
+      finishTask1();
+    }
+  }, 1000);
+}
+
+function renderT1(area, items, sz, cfg){
+  const gap = S.grade <= 2 ? 8 : 6;
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <span class="timer-num" id="t1-timer-num">${cfg.tl}s</span>
+      <div class="timer-track"><div class="timer-fill" id="t1-timer-fill" style="width:100%"></div></div>
+      <span class="item-counter" id="t1-stats-inline">Bulunan: 0 / ${cfg.targets}</span>
+    </div>
+    <div class="t1-wrap">
+      <div class="t1-target-box">
+        <span style="font-size:13px;font-weight:700;color:#7c3aed">🎯 Hedef:</span>
+        ${makeSVG('star','#f39c12',34)}
+        <span style="font-size:14px;font-weight:800;color:#7c3aed">Yıldız</span>
+        <span style="font-size:13px;color:#888;margin-left:8px">— yalnızca yıldızlara tıkla</span>
+      </div>
+      <div class="t1-grid" id="t1-grid" style="gap:${gap}px"></div>
+    </div>`;
+  
+  const grid = document.getElementById('t1-grid');
+  items.forEach((item,i)=>{
+    const cell = document.createElement('div');
+    cell.className = 't1-cell';
+    cell.dataset.idx = i;
+    cell.innerHTML = makeSVG(item.shape, item.color, sz);
+    const capturedI = i;
+    let t1Fired = false;
+    const t1Handle = (e)=>{
+      if(e && e.type==='touchend') e.preventDefault();
+      if(t1Fired) return; t1Fired = true;
+      onT1Click(capturedI);
+      setTimeout(()=>{ t1Fired=false; }, 400);
+    };
+    cell.addEventListener('touchend', t1Handle, {passive:false});
+    cell.addEventListener('click', t1Handle);
+    grid.appendChild(cell);
+  });
+}
+
+function onT1Click(i){
+  const item = S.t1.items[i];
+  if(item.state !== 'idle') return;
+  const cell = document.querySelector(`.t1-cell[data-idx="${i}"]`);
+  if(item.isTarget){
+    item.state = 'found'; cell.classList.add('found');
+    S.t1.hits++;
+  } else {
+    item.state = 'wrong'; cell.classList.add('wrong');
+    S.t1.fa++;
+    addTimer(()=>{ cell.classList.remove('wrong'); item.state='idle'; }, 400);
+  }
+  const counter = document.getElementById('t1-stats-inline');
+  if(counter) counter.textContent = `Bulunan: ${S.t1.hits} / ${S.t1.targets}`;
+  if(S.t1.hits === S.t1.targets){ clearInterval(S.t1.timerRef); addTimer(finishTask1, 500); }
+}
+
+function finishTask1(){
+  const {hits, fa, targets, items} = S.t1;
+  const totalNonTargets = items.length - targets;
+  const hitRate = hits / targets;
+  const faRate = fa / Math.max(1,totalNonTargets);
+  const raw = Math.max(0, hitRate - 0.5*faRate);
+  const perf = Math.round(raw * 100 / 0.9 * 100) / 100;
+  S.taskResults.t1 = { hits, fa, targets, totalNonTargets, perf: Math.min(100, Math.round(perf)), raw };
+  showTaskComplete(1);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 2 — SÜRDÜRÜLen DİKKAT (CPT)
+// ════════════════════════════════════════════════════════
+function runTask2(){
+  const cfg = GC[S.grade].t2;
+  const targets = Array.from({length:cfg.nt},()=>'heart');
+  const distractors = Array.from({length:cfg.n-cfg.nt},()=>randItem(['circle','triangle','square','diamond','pentagon','star']));
+  const seq = shuffle([...targets,...distractors]);
+  
+  S.t2 = {
+    seq, idx:0, hits:0, misses:0, fa:0, responded:false,
+    cfg, totalTargets:cfg.nt,
+    timerRef:null, isShowing:false,
+  };
+  
+  const area = document.getElementById('task-area');
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" id="t2-progress" style="width:0%;background:linear-gradient(to right,#0ea5e9,#0369a1)"></div></div>
+      <span class="item-counter" id="t2-counter">1 / ${cfg.n}</span>
+    </div>
+    <div class="t2-wrap">
+
+      <div class="t2-stimulus-box blank" id="t2-box"></div>
+      <div class="t2-feedback" id="t2-fb"></div>
+      <button class="t2-btn go" id="t2-btn" type="button">GÖRDÜM! 👁</button>
+    </div>`;
+  
+  runT2Cycle();
+  requestAnimationFrame(()=>{
+    const b2 = document.getElementById('t2-btn');
+    if(!b2) return;
+    let fired = false;
+    const handle = (e)=>{
+      if(e && e.type==='touchend') e.preventDefault();
+      if(fired) return; fired = true;
+      onT2Press();
+      setTimeout(()=>{ fired=false; }, 400);
+    };
+    b2.addEventListener('touchend', handle, {passive:false});
+    b2.addEventListener('click', handle);
+  });
+}
+
+function runT2Cycle(){
+  const {seq,cfg} = S.t2;
+  if(S.t2.idx >= seq.length){ finishTask2(); return; }
+  const shape = seq[S.t2.idx];
+  const isTarget = shape === 'heart';
+  S.t2.responded = false;
+  const box = document.getElementById('t2-box');
+  const btn = document.getElementById('t2-btn');
+  const counter = document.getElementById('t2-counter');
+  const fb = document.getElementById('t2-fb');
+  if(!box) return;
+  
+  fb.textContent = '';
+  fb.className = 't2-feedback';
+  
+  // Show stimulus
+  box.className = 't2-stimulus-box showing';
+  box.innerHTML = makeSVG(shape, isTarget?'#e91e63':randColor(), GC[S.grade].sz + 20);
+  if(btn) btn.disabled = false;
+  
+  const prog = document.getElementById('t2-progress');
+  if(prog) prog.style.width = ((S.t2.idx+1)/seq.length*100)+'%';
+  if(counter) counter.textContent = `${S.t2.idx+1} / ${seq.length}`;
+  
+  // Hide after showTime
+  S.t2.timerRef = addTimer(()=>{
+    if(!document.getElementById('t2-box')) return;
+    box.className = 't2-stimulus-box blank';
+    box.innerHTML = '';
+    if(btn) btn.disabled = true;
+    // Check miss
+    if(isTarget && !S.t2.responded){
+      S.t2.misses++;
+      const f = document.getElementById('t2-fb');
+      if(f){ f.textContent = 'Kaçırdın :('; f.className='t2-feedback miss'; }
+    }
+    S.t2.idx++;
+    addTimer(runT2Cycle, cfg.blank);
+  }, cfg.show);
+}
+
+function onT2Press(){
+  const {seq,idx} = S.t2;
+  if(S.t2.responded) return;
+  S.t2.responded = true;
+  const btn = document.getElementById('t2-btn');
+  if(btn) btn.disabled = true;
+  const shape = seq[idx];
+  const isTarget = shape === 'heart';
+  const fb = document.getElementById('t2-fb');
+  if(isTarget){ S.t2.hits++; }
+  else { S.t2.fa++; }
+}
+
+function finishTask2(){
+  const {hits,misses,fa,totalTargets} = S.t2;
+  const hitRate = hits / totalTargets;
+  const faRate = S.t2.fa / Math.max(1, S.t2.seq.length - totalTargets);
+  const perf = Math.round(Math.max(0, hitRate - 0.4*faRate) * 100);
+  S.taskResults.t2 = { hits, misses, fa, totalTargets, perf: Math.min(100,perf) };
+  showTaskComplete(2);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 3 — BÖLÜNMÜŞ DİKKAT
+// ════════════════════════════════════════════════════════
+const T3_LEFT_TARGET = 'star';
+const T3_RIGHT_TARGET = 'circle';
+
+function runTask3(){
+  const cfg = GC[S.grade].t3;
+  const leftShapes = ['circle','triangle','square','diamond','pentagon','heart'];
+  const rightShapes = ['triangle','square','diamond','pentagon','heart','hexagon'];
+  
+  const trials = Array.from({length:cfg.pairs},(_,i)=>{
+    const lTarget = Math.random() > .45;
+    const rTarget = Math.random() > .45;
+    return {
+      left: lTarget ? T3_LEFT_TARGET : randItem(leftShapes),
+      leftColor: randColor(),
+      right: rTarget ? T3_RIGHT_TARGET : randItem(rightShapes),
+      rightColor: randColor(),
+      lTarget, rTarget,
+    };
+  });
+  
+  S.t3 = { trials, idx:0, correct:0, cfg };
+  renderT3(trials[0], 0, cfg.pairs);
+}
+
+function renderT3(trial, idx, total){
+  const area = document.getElementById('task-area');
+  const sz = GC[S.grade].sz;
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" style="width:${(idx/total*100)}%;background:linear-gradient(to right,#0891b2,#0369a1)"></div></div>
+      <span class="item-counter">${idx+1} / ${total}</span>
+    </div>
+    <div class="t3-wrap">
+      <div style="display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:4px">
+        <span style="font-size:13px;font-weight:800;color:#0891b2">SOL hedef: ⭐ Yıldız</span>
+        <span style="color:#ccc;font-size:18px">|</span>
+        <span style="font-size:13px;font-weight:800;color:#0891b2">SAĞ hedef: ⬤ Daire</span>
+      </div>
+      <div class="t3-panels" id="t3-panels">
+        <div class="t3-panel" id="t3-left">
+          <div class="t3-panel-label">SOL</div>
+          <div class="t3-stimulus" id="t3-left-stim"></div>
+        </div>
+        <div class="t3-panel" id="t3-right">
+          <div class="t3-panel-label">SAĞ</div>
+          <div class="t3-stimulus" id="t3-right-stim"></div>
+        </div>
+      </div>
+      <div class="t3-hint" id="t3-hint">Şekiller beliriyor…</div>
+      <div class="t3-responses" id="t3-buttons" style="pointer-events:none;opacity:.4">
+        <button class="t3-res-btn" id="t3-btn-left"  style="background:#e0f2fe;color:#0369a1" type="button">Sadece<br>SOL</button>
+        <button class="t3-res-btn" id="t3-btn-right" style="background:#e0f2fe;color:#0369a1" type="button">Sadece<br>SAĞ</button>
+        <button class="t3-res-btn" id="t3-btn-both"  style="background:#dcfce7;color:#15803d" type="button">İKİSİ DE</button>
+        <button class="t3-res-btn" id="t3-btn-none"  style="background:#f1f5f9;color:#64748b" type="button">HİÇBİRİ</button>
+      </div>
+    </div>`;
+  
+  // T3 buton dinleyicileri — capturedIdx guard ile çift tetiklenme engellenir
+  requestAnimationFrame(()=>{
+    const capturedIdx = S.t3.idx;
+    [['left','t3-btn-left'],['right','t3-btn-right'],['both','t3-btn-both'],['none','t3-btn-none']]
+      .forEach(([ans, btnId])=>{
+        const btn = document.getElementById(btnId);
+        if(!btn) return;
+        let fired = false;
+        const handle = (e)=>{
+          if(e && e.type==='touchend') e.preventDefault();
+          if(fired) return;
+          if(S.t3.idx !== capturedIdx) return;
+          fired = true;
+          onT3Answer(ans);
+        };
+        btn.addEventListener('touchend', handle, {passive:false});
+        btn.addEventListener('click', handle);
+      });
+  });
+  
+  // Show stimuli after brief delay
+  addTimer(()=>{
+    const ls = document.getElementById('t3-left-stim');
+    const rs = document.getElementById('t3-right-stim');
+    const hint = document.getElementById('t3-hint');
+    const btns = document.getElementById('t3-buttons');
+    if(!ls) return;
+    ls.innerHTML = makeSVG(trial.left, trial.leftColor, sz+6);
+    rs.innerHTML = makeSVG(trial.right, trial.rightColor, sz+6);
+    if(trial.lTarget) document.getElementById('t3-left').classList.add('target-side');
+    if(trial.rTarget) document.getElementById('t3-right').classList.add('target-side');
+    
+    addTimer(()=>{
+      if(!document.getElementById('t3-left-stim')) return;
+      ls.innerHTML = ''; rs.innerHTML = '';
+      document.getElementById('t3-left').classList.remove('target-side');
+      document.getElementById('t3-right').classList.remove('target-side');
+      if(hint) hint.textContent = 'Ne gördün? Seç:';
+      if(btns){ btns.style.pointerEvents='auto'; btns.style.opacity='1'; }
+    }, S.t3.cfg.show);
+  }, 350);
+}
+
+function onT3Answer(ans){
+  if(!S.t3 || S.t3.idx >= S.t3.trials.length) return; // çift tetiklenmeye karşı guard
+  // Butonları hemen devre dışı bırak
+  ['t3-btn-left','t3-btn-right','t3-btn-both','t3-btn-none'].forEach(id=>{
+    const b = document.getElementById(id);
+    if(b) b.disabled = true;
+  });
+  const trial = S.t3.trials[S.t3.idx];
+  const correct =
+    (ans==='both' && trial.lTarget && trial.rTarget) ||
+    (ans==='left' && trial.lTarget && !trial.rTarget) ||
+    (ans==='right' && !trial.lTarget && trial.rTarget) ||
+    (ans==='none' && !trial.lTarget && !trial.rTarget);
+  if(correct) S.t3.correct++;
+  S.t3.idx++;
+  if(S.t3.idx >= S.t3.trials.length){ finishTask3(); return; }
+  renderT3(S.t3.trials[S.t3.idx], S.t3.idx, S.t3.trials.length);
+}
+
+function finishTask3(){
+  const {correct, trials} = S.t3;
+  const perf = Math.round(correct / trials.length * 100);
+  S.taskResults.t3 = { correct, total:trials.length, perf };
+  showTaskComplete(3);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 4 — DİKKATİ KAYDIRMA
+// ════════════════════════════════════════════════════════
+function runTask4(){
+  const cfg = GC[S.grade].t4;
+  const targetColor = randItem(cfg.colors);
+  const targetShape = randItem(cfg.shapes);
+  
+  // Build trial sequence
+  const trials = [];
+  // Phase 1: pure color rule
+  for(let i=0;i<cfg.p1;i++){
+    const s = randItem(cfg.shapes); const c = randItem(cfg.colors);
+    trials.push({rule:'color',targetColor,targetShape,shape:s,color:c,
+      correct:(c===targetColor), phase:1, isSwitch:false});
+  }
+  // Phase 2: pure shape rule
+  for(let i=0;i<cfg.p2;i++){
+    const s = randItem(cfg.shapes); const c = randItem(cfg.colors);
+    trials.push({rule:'shape',targetColor,targetShape,shape:s,color:c,
+      correct:(s===targetShape), phase:2, isSwitch:false});
+  }
+  // Phase 3: switching
+  const switchRules = ['color','shape'];
+  let lastRule = 'color';
+  for(let i=0;i<cfg.p3;i++){
+    const rule = switchRules[(i%2)];
+    const s = randItem(cfg.shapes); const c = randItem(cfg.colors);
+    const isSwitch = rule !== lastRule && i > 0;
+    const correct = rule==='color' ? c===targetColor : s===targetShape;
+    trials.push({rule,targetColor,targetShape,shape:s,color:c,correct,phase:3,isSwitch});
+    lastRule = rule;
+  }
+  
+  S.t4 = {trials,idx:0,correct:0,switchCorrect:0,switchTotal:0,cfg,targetColor,targetShape,responded:false};
+  renderT4Trial();
+}
+
+function renderT4Trial(){
+  const {trials,idx,targetColor,targetShape} = S.t4;
+  if(idx >= trials.length){ finishTask4(); return; }
+  const trial = trials[idx];
+  const total = trials.length;
+  const area = document.getElementById('task-area');
+  const sz = GC[S.grade].sz + 16;
+  const ruleTR = trial.rule==='color' ? `RENK mi? → <strong>${targetColor.toUpperCase()}</strong>` : `ŞEKİL mi? → <strong>${SHAPE_NAMES_TR[targetShape]?.toUpperCase()}</strong>`;
+  const ruleClass = trial.rule==='color' ? 'rule-color' : 'rule-shape';
+  
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" style="width:${(idx/total*100)}%;background:linear-gradient(to right,#f59e0b,#b45309)"></div></div>
+      <span class="item-counter">${idx+1} / ${total}</span>
+    </div>
+    <div class="t4-wrap">
+      <div class="t4-rule-badge ${ruleClass}" id="t4-rule">${ruleTR}</div>
+      <div class="t4-stimulus-area" id="t4-stim"></div>
+      <div class="t4-buttons">
+        <button class="t4-btn yes" id="t4-yes" type="button">EVET</button>
+        <button class="t4-btn no" id="t4-no" type="button">HAYIR</button>
+      </div>
+    </div>`;
+  
+  addTimer(()=>{
+    const stim = document.getElementById('t4-stim');
+    if(stim) stim.innerHTML = makeSVGWithStroke(trial.shape, COLOR_MAP[trial.color]||'#888', sz, '#fff', 3);
+    // Attach listeners — guard by captured idx so double-fire is impossible
+    const capturedIdx = S.t4.idx;
+    const attach = (id, ans) => {
+      const btn = document.getElementById(id);
+      if(!btn) return;
+      let fired = false;
+      const handle = (e) => {
+        if(e && e.type==='touchend') e.preventDefault();
+        if(fired) return;
+        if(S.t4.idx !== capturedIdx) return; // already moved on
+        fired = true;
+        onT4Answer(ans);
+      };
+      btn.addEventListener('touchend', handle, {passive:false});
+      btn.addEventListener('click', handle);
+    };
+    attach('t4-yes', true);
+    attach('t4-no', false);
+  }, 200);
+}
+
+function onT4Answer(ans){
+  const {trials,idx} = S.t4;
+  const trial = trials[idx];
+  // Disable buttons immediately to block any further taps
+  const yes = document.getElementById('t4-yes');
+  const no = document.getElementById('t4-no');
+  if(yes) yes.disabled = true;
+  if(no) no.disabled = true;
+  const isCorrect = (ans === trial.correct);
+  if(isCorrect) S.t4.correct++;
+  if(trial.phase===3 && trial.isSwitch){ S.t4.switchTotal++; if(isCorrect) S.t4.switchCorrect++; }
+  S.t4.idx++;
+  addTimer(renderT4Trial, 400);
+}
+
+function finishTask4(){
+  const {correct,trials,switchCorrect,switchTotal} = S.t4;
+  const stayTrials = trials.filter(t=>t.phase<=2).length;
+  const stayCorrect = trials.filter((t,i)=>t.phase<=2&&i<stayTrials&&t.correct===S.t4.correct).length;
+  const phase3 = trials.filter(t=>t.phase===3);
+  const p3total = phase3.length;
+  const p3correct = phase3.filter((_,i)=>i < S.t4.correct).length; // simplified
+  const totalCorrect = correct;
+  const perf = Math.round(totalCorrect / trials.length * 100);
+  const switchRate = switchTotal > 0 ? Math.round(switchCorrect / switchTotal * 100) : 50;
+  S.taskResults.t4 = { correct, total:trials.length, switchCorrect, switchTotal, perf, switchRate };
+  showTaskComplete(4);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 5 — DÜRTÜ DENETİMİ (GO/NO-GO)
+// ════════════════════════════════════════════════════════
+function runTask5(){
+  const cfg = GC[S.grade].t5;
+  const goShapes = Array.from({length:cfg.go},()=>randItem(['star','circle','triangle','square','diamond']));
+  const nogoShapes = Array.from({length:cfg.nogo},()=>randItem(['star','circle','triangle','square','diamond']));
+  const trials = shuffle([
+    ...goShapes.map(s=>({shape:s,color:randColor(),isGo:true})),
+    ...nogoShapes.map(s=>({shape:s,color:randColor(),isGo:false})),
+  ]);
+  
+  S.t5 = {trials,idx:0,goHits:0,goMisses:0,commission:0,cfg,responded:false};
+  renderT5Area();
+  runT5Cycle();
+  requestAnimationFrame(()=>{
+    const b5 = document.getElementById('t5-gbtn');
+    if(!b5) return;
+    let fired = false;
+    const handle = (e)=>{
+      if(e && e.type==='touchend') e.preventDefault();
+      if(fired) return; fired = true;
+      onT5Press();
+      setTimeout(()=>{ fired=false; }, 400);
+    };
+    b5.addEventListener('touchend', handle, {passive:false});
+    b5.addEventListener('click', handle);
+  });
+}
+
+function renderT5Area(){
+  const cfg = GC[S.grade].t5;
+  const area = document.getElementById('task-area');
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" id="t5-prog" style="width:0%;background:linear-gradient(to right,#22c55e,#dc2626)"></div></div>
+      <span class="item-counter" id="t5-counter">1 / ${cfg.n}</span>
+    </div>
+    <div class="t5-wrap">
+      <div class="t5-box blank-box" id="t5-box"></div>
+      <div class="t5-label" id="t5-label"></div>
+      <div class="t5-feedback" id="t5-fb"></div>
+      <button class="t5-go-btn" id="t5-gbtn" type="button" disabled>DEVAM! 👉</button>
+    </div>`;
+}
+
+function runT5Cycle(){
+  if(S.t5.idx >= S.t5.trials.length){ finishTask5(); return; }
+  const trial = S.t5.trials[S.t5.idx];
+  const {cfg} = S.t5;
+  const box = document.getElementById('t5-box');
+  const lbl = document.getElementById('t5-label');
+  const btn = document.getElementById('t5-gbtn');
+  const prog = document.getElementById('t5-prog');
+  const cnt = document.getElementById('t5-counter');
+  if(!box) return;
+  
+  document.getElementById('t5-fb').textContent='';
+  
+  const sz = GC[S.grade].sz + 20;
+  box.className = 't5-box ' + (trial.isGo ? 'go-box' : 'stop-box');
+  
+  // Add stop hand overlay for NO-GO
+  if(trial.isGo){
+    box.innerHTML = makeSVG(trial.shape, trial.color, sz);
+    if(lbl){ lbl.className='t5-label go-label'; lbl.textContent=''; }
+  } else {
+    box.innerHTML = `<div style="position:relative;display:inline-block">
+      ${makeSVG(trial.shape, trial.color, sz)}
+      <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:${Math.round(sz*.65)}px">✋</span>
+    </div>`;
+    if(lbl){ lbl.className='t5-label stop-label'; lbl.textContent=''; }
+  }
+  
+  S.t5.responded = false;
+  if(btn) btn.disabled = false;
+  if(prog) prog.style.width = ((S.t5.idx+1)/cfg.n*100)+'%';
+  if(cnt) cnt.textContent = `${S.t5.idx+1} / ${cfg.n}`;
+  
+  addTimer(()=>{
+    if(!document.getElementById('t5-box')) return;
+    box.className = 't5-box blank-box'; box.innerHTML='';
+    if(lbl) lbl.textContent='';
+    if(btn) btn.disabled = true;
+    // Check miss on GO
+    if(trial.isGo && !S.t5.responded){
+      S.t5.goMisses++;
+    }
+    S.t5.idx++;
+    addTimer(runT5Cycle, 400);
+  }, cfg.disp);
+}
+
+function onT5Press(){
+  if(S.t5.responded) return;
+  S.t5.responded = true;
+  const trial = S.t5.trials[S.t5.idx];
+  const btn = document.getElementById('t5-gbtn');
+  const fb = document.getElementById('t5-fb');
+  if(btn) btn.disabled = true;
+  if(trial.isGo){ S.t5.goHits++; }
+  else { S.t5.commission++; }
+}
+
+function finishTask5(){
+  const {goHits, goMisses, commission, trials} = S.t5;
+  const cfg = GC[S.grade].t5;
+  const goAcc = goHits / cfg.go;
+  const nogoAcc = 1 - commission / cfg.nogo;
+  const perf = Math.round((goAcc * 0.4 + nogoAcc * 0.6) * 100);
+  S.taskResults.t5 = { goHits, goMisses, commission, goTotal:cfg.go, nogoTotal:cfg.nogo, perf };
+  showTaskComplete(5);
+}
+
+// ════════════════════════════════════════════════════════
+//  TASK 6 — ÇALIŞMA BELLEĞİ / SIРА HATIRLA
+// ════════════════════════════════════════════════════════
+function runTask6(){
+  const cfg = GC[S.grade].t6;
+  S.t6 = {
+    cfg, trialIdx:0, correctTrials:0,
+    answer:[], sequence:[],
+    phase:'showing', // showing | responding
+  };
+  startT6Trial();
+}
+
+function startT6Trial(){
+  const {cfg, trialIdx} = S.t6;
+  const pool = shuffle([...cfg.pool]).slice(0, Math.min(cfg.len+3, cfg.pool.length));
+  const seq = shuffle(pool).slice(0, cfg.len);
+  S.t6.sequence = seq;
+  S.t6.answer = [];
+  S.t6.phase = 'showing';
+  S.t6.pool = pool;
+  renderT6Show(0, seq, pool);
+}
+
+function renderT6Show(itemIdx, seq, pool){
+  const area = document.getElementById('task-area');
+  const {cfg, trialIdx} = S.t6;
+  const total = cfg.trials;
+  
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" style="width:${(trialIdx/total*100)}%;background:linear-gradient(to right,#22c55e,#15803d)"></div></div>
+      <span class="item-counter">Tur ${trialIdx+1} / ${total}</span>
+    </div>
+    <div class="t6-wrap">
+      <div class="t6-instruction">Sırayı dikkatlice izle! 👀</div>
+      <div class="t6-sequence-display" id="t6-seq-display">
+        ${seq.map((_,i)=>`<div class="t6-seq-item" id="t6-item-${i}">?</div>`).join('')}
+      </div>
+      <div style="font-size:13px;color:#aaa;text-align:center">Şekiller sırayla beliriyor…</div>
+    </div>`;
+  
+  // Show items one by one
+  const showSpeed = S.grade <= 2 ? 900 : 750;
+  const blankSpeed = S.grade <= 2 ? 400 : 300;
+  
+  let i = 0;
+  const showNext = ()=>{
+    if(i >= seq.length){ addTimer(()=>renderT6Respond(seq, pool), 600); return; }
+    const slot = document.getElementById(`t6-item-${i}`);
+    if(slot){ slot.textContent = seq[i]; slot.classList.add('showing'); }
+    i++;
+    addTimer(()=>{
+      const s = document.getElementById(`t6-item-${i-1}`);
+      if(s){ s.classList.remove('showing'); s.textContent=''; }
+      addTimer(showNext, blankSpeed);
+    }, showSpeed);
+  };
+  addTimer(showNext, 500);
+}
+
+function renderT6Respond(seq, pool){
+  const area = document.getElementById('task-area');
+  const {cfg, trialIdx, answer} = S.t6;
+  const total = cfg.trials;
+  
+  area.innerHTML = `
+    <div class="timer-bar-wrap">
+      <div class="timer-track" style="flex:1"><div class="timer-fill" style="width:${(trialIdx/total*100)}%;background:linear-gradient(to right,#22c55e,#15803d)"></div></div>
+      <span class="item-counter">Tur ${trialIdx+1} / ${total}</span>
+    </div>
+    <div class="t6-wrap">
+      <div class="t6-instruction">Sırayla tıkla! 👆</div>
+      <div class="t6-answer-slots" id="t6-slots">
+        ${seq.map((_,i)=>`<div class="t6-slot" id="t6-slot-${i}"></div>`).join('')}
+      </div>
+      <div class="t6-options" id="t6-opts">
+        ${shuffle([...pool]).map(e=>`<button class="t6-option-btn">${e}</button>`).join('')}
+      </div>
+      <button class="t6-check-btn" id="t6-submit" disabled>Kontrol Et ✓</button>
+      <div class="t6-trial-result" id="t6-trial-result"></div>
+    </div>`;
+  
+  S.t6.answer = [];
+  // Touch + click listeners for T6
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.t6-option-btn').forEach(btn=>{
+      const emoji = btn.textContent;
+      let touching=false;
+      btn.addEventListener('touchend',(e)=>{ e.preventDefault(); touching=true; onT6Pick(emoji); setTimeout(()=>{touching=false;},400); },{passive:false});
+      btn.addEventListener('click',()=>{ if(!touching) onT6Pick(emoji); });
+    });
+    const sub = document.getElementById('t6-submit');
+    if(sub){
+      let touching=false;
+      sub.addEventListener('touchend',(e)=>{ e.preventDefault(); touching=true; checkT6Answer(seq.join(','),seq.length); setTimeout(()=>{touching=false;},400); },{passive:false});
+      sub.addEventListener('click',()=>{ if(!touching) checkT6Answer(seq.join(','),seq.length); });
+    }
+  });
+}
+
+function onT6Pick(emoji){
+  if(!S.t6) return;
+  const {answer, sequence} = S.t6;
+  const seq = sequence;
+  if(answer.length >= seq.length) return;
+  answer.push(emoji);
+  
+  // Update slots
+  const slot = document.getElementById(`t6-slot-${answer.length-1}`);
+  if(slot){ slot.textContent = emoji; slot.classList.add('filled'); }
+  
+  // Disable selected button (first match)
+  const opts = document.querySelectorAll('.t6-option-btn:not([disabled])');
+  for(const btn of opts){
+    if(btn.textContent === emoji && !btn.classList.contains('selected')){
+      btn.classList.add('selected'); btn.disabled = true; break;
+    }
+  }
+  
+  const submit = document.getElementById('t6-submit');
+  if(submit) submit.disabled = answer.length < seq.length;
+}
+
+function checkT6Answer(seqStr, len){
+  const {answer} = S.t6;
+  const seq = seqStr.split(',');
+  const isCorrect = seq.every((e,i)=>e===answer[i]);
+  if(isCorrect) S.t6.correctTrials++;
+  
+  const res = document.getElementById('t6-trial-result');
+  if(res){ 
+    res.textContent = isCorrect ? '🎉 Harika, doğru sıra!' : '😕 Sıra yanlıştı: ' + seq.join(' → ');
+    res.className = 't6-trial-result ' + (isCorrect?'ok':'fail');
+  }
+  
+  // Disable all buttons
+  document.querySelectorAll('.t6-option-btn').forEach(b=>b.disabled=true);
+  document.getElementById('t6-submit').disabled = true;
+  
+  S.t6.trialIdx++;
+  if(S.t6.trialIdx >= S.t6.cfg.trials){
+    addTimer(finishTask6, 1200);
+  } else {
+    addTimer(startT6Trial, 1400);
+  }
+}
+
+function finishTask6(){
+  const {correctTrials, cfg} = S.t6;
+  const perf = Math.round(correctTrials / cfg.trials * 100);
+  S.taskResults.t6 = { correctTrials, total:cfg.trials, seqLen:cfg.len, perf };
+  showTaskComplete(6);
+}
+
+// ════════════════════════════════════════════════════════
+//  SHOW RESULTS
+// ════════════════════════════════════════════════════════
+const SUBSCALE_INFO = [
+  {key:'t1',name:'Seçici Dikkat',icon:'🔍',color:'#7c3aed',
+   desc:'İlgili uyaranı seçip dikkat dağıtıcıları baskılayabilme.',
+   interpretations:{
+     high:'Seçici dikkat alanında performans yaş düzeyine yakındır. Öğrenci dikkat dağıtıcıları büyük ölçüde baskılayabiliyor ve hedef uyaranlara odaklanabiliyor görünmektedir.',
+     mid:'Seçici dikkat alanında orta düzey güçlük işaretleri vardır. Kalabalık, hareketli ya da görsel olarak yoğun ortamlarda görev odağı azalabilir; yapısal destek yararlı olabilir.',
+     low:'Seçici dikkat alanında belirgin performans güçlüğü gözlenmiştir. Hedef uyaranı dikkat dağıtıcılardan ayırt etmede sistematik zorlanma yaşandığı düşünülmektedir; çoklu kaynak değerlendirmesi önerilir.',
+   }},
+  {key:'t2',name:'Sürdürülen Dikkat',icon:'⏱',color:'#0369a1',
+   desc:'Dikkati uzun süre aynı görev üzerinde tutabilme.',
+   interpretations:{
+     high:'Sürdürülen dikkat açısından görev üzerinde kalma süresi büyük ölçüde yeterli görünmektedir. Belirgin bir dikkat kırılganlığı öne çıkmamıştır.',
+     mid:'Sürdürülen dikkat alanında izlem gerektiren bir örüntü görülmektedir. Uzun süreli veya tekrarlı görevlerde kopma ya da yavaşlama belirgin olabilir.',
+     low:'Sürdürülen dikkat alanında belirgin güçlük bulgusu elde edilmiştir. Zamanla yayılan görevlerde performans sürekliliği korunamamaktadır; uzman değerlendirmesi düşünülebilir.',
+   }},
+  {key:'t3',name:'Bölünmüş Dikkat',icon:'👀',color:'#0891b2',
+   desc:'Aynı anda birden fazla bilgi kaynağını izleyebilme.',
+   interpretations:{
+     high:'Bölünmüş dikkat gerektiren durumlarda performans yaş beklentileriyle uyumludur. Çift görev kapasitesi görece yeterlidir.',
+     mid:'Bölünmüş dikkat alanında orta düzey güçlük işaretleri mevcuttur. Eş zamanlı iki bilgi akışını izleme sürecinde hata oranı artabilir.',
+     low:'Bölünmüş dikkat alanında belirgin güçlük saptanmıştır. Aynı anda birden fazla uyaranı izleme kapasitesi önemli ölçüde sınırlıdır; sınıf içi destek planlanması önerilir.',
+   }},
+  {key:'t4',name:'Dikkati Kaydırma / Esneklik',icon:'🔄',color:'#b45309',
+   desc:'Kural veya görev değişimlerine uyum sağlayabilme.',
+   interpretations:{
+     high:'Görev değişimi ve kural güncelleme süreçlerinde belirgin bir esneklik sorunu öne çıkmamıştır.',
+     mid:'Dikkati kaydırma ve bilişsel esneklik alanında orta düzey katılık görünümü gözlenmiştir. Geçişlerde ve yeni kurala uyum süreçlerinde ek yapı ve destek gerekebilir.',
+     low:'Dikkati kaydırma/esneklik alanında belirgin güçlük saptanmıştır. Görev değişimi, strateji güncelleme ve yeni kurala geçiş ciddi zorlanmalara yol açmaktadır.',
+   }},
+  {key:'t5',name:'Dürtü Denetimi (Dikkat Boyutu)',icon:'🛑',color:'#b91c1c',
+   desc:'Tepkiyi geciktirme, dürtüsel yanıtları baskılama.',
+   interpretations:{
+     high:'Dürtü denetimiyle ilişkili dikkat davranışlarında belirgin sorun öne çıkmamıştır. Yanıt baskılama kapasitesi görece yeterlidir.',
+     mid:'Dürtü denetimi ve dikkat düzenleme alanında orta düzey güçlük izlenmiştir. Acelecilik ya da STOP uyaranında baskılama başarısızlıkları öğrenmeyi olumsuz etkileyebilir.',
+     low:'Dürtü denetimiyle ilişkili dikkat davranışlarında belirgin güçlük saptanmıştır. Yanıt geciktirme, inhibisyon ve dürtüsel tepkileri baskılama süreçlerinde sistematik zorlanma gözlenmektedir.',
+   }},
+  {key:'t6',name:'Çalışma Belleği Destekli Dikkat',icon:'🧠',color:'#15803d',
+   desc:'Bilgiyi akılda tutarak sıralı biçimde uygulayabilme.',
+   interpretations:{
+     high:'Çalışma belleği destekli dikkat alanında yaş düzeyine yakın bir performans görülmüştür. Sıralı bilgiyi tutma ve işleme kapasitesi yeterlidir.',
+     mid:'Bu alanda izlem gerektiren güçlük işaretleri bulunmaktadır. Çok adımlı yönergeleri ve sıralı bilgiyi akılda tutma ve uygulamada ek destek ihtiyacı olabilir.',
+     low:'Çalışma belleği destekli dikkat alanında belirgin güçlük saptanmıştır. Sıralı bilgiyi geçici olarak tutup işleme ve doğru sırayla uygulama süreçleri önemli ölçüde zorlamaktadır.',
+   }},
+];
+
+// Grade-based performance thresholds
+const GRADE_THRESH = {1:52,2:60,3:67,4:73};
+
+function classify(perf, grade){
+  const th = GRADE_THRESH[grade];
+  if(perf >= th) return 'high';
+  if(perf >= th - 17) return 'mid';
+  return 'low';
+}
+
+function classLabel(cl){ return {high:'Normal Aralık',mid:'İzlem Gerektirir',low:'Belirgin Güçlük'}[cl]; }
+function classBadgeCls(cl){ return {high:'badge-ok',mid:'badge-warn',low:'badge-danger'}[cl]; }
+function barColor(cl){ return {high:'#22c55e',mid:'#f59e0b',low:'#ef4444'}[cl]; }
+
+function computeRAMScore(results, grade){
+  const scores = SUBSCALE_INFO.map(si=>results[si.key]?.perf??50);
+  const composite = scores.reduce((a,b)=>a+b,0)/scores.length;
+  const highRisk = scores.filter(p=>classify(p,grade)==='low').length;
+  const midRisk = scores.filter(p=>classify(p,grade)==='mid').length;
+  const base = (1 - composite/100)*70;
+  const bonus = highRisk*8.5 + midRisk*3.5;
+  return Math.min(100, Math.round(base + bonus));
+}
+
+function showResults(){
+  clearTimers();
+  S.currentTask = 7;
+  renderProgress();
+  
+  document.getElementById('tab-results').disabled = false;
+  document.getElementById('tab-plan').disabled = false;
+  goTab('results');
+  
+  const {student, grade, taskResults:r} = S;
+  
+  // Header
+  const dateStr = student.date ? new Date(student.date).toLocaleDateString('tr-TR') : '—';
+  document.getElementById('results-student-line').innerHTML =
+    `<strong>${student.name}</strong> · ${grade}. Sınıf · ${dateStr}` +
+    (student.school ? ` · ${student.school}` : '') +
+    (student.counselor ? ` · Uygulayan: ${student.counselor}` : '');
+  
+  const perfs = SUBSCALE_INFO.map(si=>r[si.key]?.perf??0);
+  const overall = Math.round(perfs.reduce((a,b)=>a+b,0)/perfs.length);
+  const ramScore = computeRAMScore(r, grade);
+  
+  const maxIdx = perfs.indexOf(Math.max(...perfs));
+  const minIdx = perfs.indexOf(Math.min(...perfs));
+  
+  document.getElementById('kpi-overall').textContent = overall + '%';
+  document.getElementById('kpi-strongest').textContent = SUBSCALE_INFO[maxIdx].icon;
+  document.getElementById('kpi-weakest').textContent = SUBSCALE_INFO[minIdx].icon;
+  document.getElementById('kpi-ram').textContent = ramScore;
+  
+  // Subscale list
+  const subList = document.getElementById('subscale-list');
+  subList.innerHTML = SUBSCALE_INFO.map(si=>{
+    const perf = r[si.key]?.perf??0;
+    const cl = classify(perf, grade);
+    return `<div class="subscale-row">
+      <div class="subscale-name">${si.icon} ${si.name}</div>
+      <div class="subscale-bar-wrap"><div class="subscale-bar" style="width:${perf}%;background:${barColor(cl)}"></div></div>
+      <div class="subscale-score">${perf}</div>
+      <span class="badge-pill ${classBadgeCls(cl)}">${classLabel(cl)}</span>
+    </div>`;
+  }).join('');
+  
+  // Radar chart
+  drawRadarChart(perfs);
+  
+  // RAM score box
+  document.getElementById('ram-big').textContent = ramScore;
+  const ramLabels = ramScore<=30 ? 'Yönlendirme Gerekmiyor' : ramScore<=55 ? 'İzleme Alınması Önerilir' : ramScore<=75 ? 'Uzman Görüşü Alınması Önerilir' : 'RAM Yönlendirmesi Güçlü Şekilde Önerilir';
+  const ramTexts = {
+    low: 'Testte elde edilen bulgular, dikkat bileşenlerinde belirgin ve kalıcı bir güçlük örüntüsüne işaret etmemektedir. Bununla birlikte sınıf içi gözlem ve öğretmen görüşü izlenmeye devam edilmelidir.',
+    mid: 'Testte bazı dikkat bileşenlerinde izlem gerektiren bulgular elde edilmiştir. Yapılandırılmış sınıf içi destek, aile-öğretmen iş birliği ve belirli aralıklarla yeniden değerlendirme önerilmektedir.',
+    high: 'Testte birden fazla dikkat bileşeninde belirgin güçlük bulgusu elde edilmiştir. Bu görünüm, çoklu kaynak değerlendirmesi ve gerekirse Rehberlik Araştırma Merkezi (RAM) yönlendirmesi açısından dikkate alınmalıdır.',
+    critical: 'Testte dikkat bileşenlerinin büyük bölümünde belirgin güçlük bulgusu elde edilmiştir. Kapsamlı değerlendirme ve RAM yönlendirmesi güçlü biçimde önerilmektedir.',
+  };
+  const ramLvl = ramScore<=30?'low':ramScore<=55?'mid':ramScore<=75?'high':'critical';
+  document.getElementById('ram-label').textContent = `RAM Yönlendirme Skoru: ${ramScore} / 100 — ${ramLabels}`;
+  document.getElementById('ram-text').textContent = ramTexts[ramLvl];
+  const scale = document.getElementById('ram-scale');
+  scale.innerHTML = `<div class="ram-marker" style="left:${ramScore}%" data-val="${ramScore}"></div>`;
+  
+  // Clinical cards
+  const cards = document.getElementById('clinical-cards');
+  cards.innerHTML = SUBSCALE_INFO.map(si=>{
+    const perf = r[si.key]?.perf??0;
+    const cl = classify(perf, grade);
+    const txt = si.interpretations[cl];
+    const borderColor = {high:'#22c55e',mid:'#f59e0b',low:'#ef4444'}[cl];
+    return `<div class="clinical-card" style="border-left-color:${borderColor}">
+      <div class="clinical-card-top">
+        <div class="ctitle" style="color:${si.color}">${si.icon} ${si.name}</div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="badge-pill ${classBadgeCls(cl)}">${classLabel(cl)}</span>
+          <span class="cscore" style="color:${si.color}">${perf}%</span>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#888;margin-bottom:8px">${si.desc}</div>
+      <div class="clinical-card-text">${txt}</div>
+    </div>`;
+  }).join('');
+
+  // Generate intervention plan
+  generatePlan();
+}
+
+// ════════════════════════════════════════════════════════
+//  RADAR CHART
+// ════════════════════════════════════════════════════════
+function drawRadarChart(perfs){
+  const canvas = document.getElementById('radarChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  const cx = W/2, cy = H/2+10, R = Math.min(W,H)/2 - 50;
+  const N = 6;
+  const labels = ['Seçici','Sürdürülen','Bölünmüş','Kaydırma','Dürtü','Bellek'];
+  const colors = ['#7c3aed','#0369a1','#0891b2','#b45309','#b91c1c','#15803d'];
+  
+  const angle = (i)=> (i * 2*Math.PI/N) - Math.PI/2;
+  
+  // Grid circles
+  [20,40,60,80,100].forEach(pct=>{
+    ctx.beginPath();
+    for(let i=0;i<N;i++){
+      const r = R*pct/100;
+      const x = cx + r*Math.cos(angle(i));
+      const y = cy + r*Math.sin(angle(i));
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = pct===100?'#c7d8f5':'#e0e7ef';
+    ctx.lineWidth = pct===100?1.5:1;
+    ctx.stroke();
+    // Label
+    ctx.fillStyle='#aab';
+    ctx.font='10px Nunito,sans-serif';
+    ctx.textAlign='right';
+    ctx.fillText(pct+'%', cx - R*pct/100*Math.cos(Math.PI/2) - 3, cy - R*pct/100*Math.sin(Math.PI/2) + 4);
+  });
+  
+  // Axis lines
+  for(let i=0;i<N;i++){
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+R*Math.cos(angle(i)), cy+R*Math.sin(angle(i)));
+    ctx.strokeStyle='#dde3f0'; ctx.lineWidth=1; ctx.stroke();
+  }
+  
+  // Data fill
+  ctx.beginPath();
+  for(let i=0;i<N;i++){
+    const r = R*Math.min(perfs[i],100)/100;
+    const x = cx + r*Math.cos(angle(i));
+    const y = cy + r*Math.sin(angle(i));
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle='rgba(0,180,216,.18)';
+  ctx.fill();
+  ctx.strokeStyle='#00b4d8'; ctx.lineWidth=2.5; ctx.stroke();
+  
+  // Data points
+  for(let i=0;i<N;i++){
+    const r = R*Math.min(perfs[i],100)/100;
+    const x = cx + r*Math.cos(angle(i));
+    const y = cy + r*Math.sin(angle(i));
+    ctx.beginPath(); ctx.arc(x,y,5,0,2*Math.PI);
+    ctx.fillStyle=colors[i]; ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.stroke();
+  }
+  
+  // Labels
+  for(let i=0;i<N;i++){
+    const lx = cx + (R+30)*Math.cos(angle(i));
+    const ly = cy + (R+30)*Math.sin(angle(i));
+    ctx.fillStyle=colors[i];
+    ctx.font='bold 11px Nunito,sans-serif';
+    ctx.textAlign = lx>cx+5?'left':lx<cx-5?'right':'center';
+    ctx.textBaseline = ly>cy+5?'top':ly<cy-5?'bottom':'middle';
+    ctx.fillText(labels[i], lx, ly);
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  DOCX REPORT GENERATION
+// ════════════════════════════════════════════════════════
+
+// ════════════════════════════════════════════════════════
+//  PLATFORM-AWARE DOSYA KAYDETME
+//  iOS Safari: Web Share API  |  Diğer: FileSaver / <a>
+// ════════════════════════════════════════════════════════
+async function saveBlob(blob, filename){
+  const mimeDocx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+  const file = new File([blob], filename, {type: mimeDocx});
+
+  // 1. Web Share API (iOS 15+ Safari, Android Chrome)
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    try{
+      await navigator.share({files:[file], title: filename.replace(/_/g,' ').replace('.docx','')});
+      return;
+    }catch(e){
+      if(e.name === 'AbortError') return; // kullanıcı iptal etti
+      // paylaşma başarısız → aşağıdaki yöntemlere geç
+    }
+  }
+
+  // 2. FileSaver (masaüstü tarayıcılar)
+  if(typeof saveAs !== 'undefined'){
+    saveAs(blob, filename);
+    return;
+  }
+
+  // 3. Manuel <a> tag yöntemi (fallback)
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 2000);
+}
+
+async function downloadDocx(){
+  if(typeof docx === 'undefined'){
+    alert('DOCX indirmek için internet bağlantısı gereklidir. Lütfen bağlantınızı kontrol edip tekrar deneyin.');
+    return;
+  }
+  
+  const {student, grade, taskResults:r} = S;
+  const perfs = SUBSCALE_INFO.map(si=>r[si.key]?.perf??0);
+  const overall = Math.round(perfs.reduce((a,b)=>a+b,0)/perfs.length);
+  const ramScore = computeRAMScore(r, grade);
+  const dateStr = student.date ? new Date(student.date).toLocaleDateString('tr-TR') : '—';
+  
+  const {
+    Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+    AlignmentType, HeadingLevel, BorderStyle, WidthType, ShadingType,
+    VerticalAlign, LevelFormat, PageNumber
+  } = docx;
+  
+  const bdr = (c='CCCCCC')=>({ style: BorderStyle.SINGLE, size:1, color:c });
+  const borders = (c='CCCCCC')=>({ top:bdr(c), bottom:bdr(c), left:bdr(c), right:bdr(c) });
+  const cell = (text,{bg,bold,color,colspan,w}={})=>new TableCell({
+    width:{size:w||2340,type:WidthType.DXA},
+    columnSpan:colspan||1,
+    borders:borders('CCCCCC'),
+    shading:bg?{fill:bg,type:ShadingType.CLEAR}:{},
+    margins:{top:80,bottom:80,left:120,right:120},
+    children:[new Paragraph({alignment:AlignmentType.LEFT,children:[new TextRun({text:String(text),bold:bold||false,color:color||'000000',size:22,font:'Arial'})]})]
+  });
+  
+  const h = (text,level=1)=>new Paragraph({
+    heading: level===1?HeadingLevel.HEADING_1:level===2?HeadingLevel.HEADING_2:HeadingLevel.HEADING_3,
+    children:[new TextRun({text,bold:true,font:'Arial',size:level===1?30:level===2?26:24,color:'1A2E5A'})]
+  });
+  
+  const p = (text,{bold,size,color,indent}={})=>new Paragraph({
+    indent: indent?{left:360}:{},
+    spacing:{after:100},
+    children:[new TextRun({text,font:'Arial',size:size||22,bold:bold||false,color:color||'1E293B'})]
+  });
+  
+  const hr = ()=>new Paragraph({
+    border:{ bottom:{style:BorderStyle.SINGLE,size:6,color:'1A2E5A',space:1} },
+    spacing:{after:160,before:80},
+    children:[new TextRun('')]
+  });
+
+  const ramLvl = ramScore<=30?'Belirgin güçlük öne çıkmıyor':ramScore<=55?'İzleme alınması önerilir':ramScore<=75?'Uzman görüşü alınması önerilir':'RAM yönlendirmesi güçlü biçimde önerilir';
+  
+  const children = [
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},children:[
+      new TextRun({text:'DİKKAT DEĞERLENDİRME TESTİ',bold:true,size:36,font:'Arial',color:'1A2E5A'}),
+    ]}),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[
+      new TextRun({text:`Performansa Dayalı Dikkat Ön Değerlendirme Aracı | PDR Kullanımına Yönelik`,size:22,font:'Arial',color:'64748B'}),
+    ]}),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:320},children:[
+      new TextRun({text:`6–10 Yaş Grubu (1–4. Sınıf) `,size:22,font:'Arial',color:'64748B'}),
+    ]}),
+    hr(),
+    h('1. ÖĞRENCİ VE UYGULAMA BİLGİLERİ',2),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},
+      columnWidths:[2340,2340,2340,2340],
+      rows:[
+        new TableRow({children:[cell('Öğrenci Adı',{bold:true,bg:'EFF6FF'}),cell(student.name||'—'),cell('Sınıf',{bold:true,bg:'EFF6FF'}),cell(`${grade}. Sınıf`)]}),
+        new TableRow({children:[cell('Uygulama Tarihi',{bold:true,bg:'EFF6FF'}),cell(dateStr),cell('Okul',{bold:true,bg:'EFF6FF'}),cell(student.school||'—')]}),
+        new TableRow({children:[cell('Uygulayan / P.D.',{bold:true,bg:'EFF6FF'}),cell(student.counselor||'—'),cell('Dosya No',{bold:true,bg:'EFF6FF'}),cell(student.fileno||'—')]}),
+        new TableRow({children:[cell('Başvuru Nedeni',{bold:true,bg:'EFF6FF',colspan:1}),cell(student.reason||'—',{colspan:3,w:7020})]}),
+      ]
+    }),
+    new Paragraph({spacing:{after:240},children:[new TextRun('')]}),
+    hr(),
+    h('2. GENEL PERFORMANS ÖZETİ',2),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},
+      columnWidths:[4680,4680],
+      rows:[
+        new TableRow({children:[cell('Genel Performans Skoru',{bold:true,bg:'EFF6FF'}),cell(`${overall} / 100`,{bold:true,color:overall>=GRADE_THRESH[grade]?'16A34A':overall>=GRADE_THRESH[grade]-17?'D97706':'DC2626'})]}),
+        new TableRow({children:[cell('RAM Yönlendirme Skoru',{bold:true,bg:'FFF5F5'}),cell(`${ramScore} / 100 — ${ramLvl}`,{bold:true,color:'B91C1C'})]}),
+      ]
+    }),
+    new Paragraph({spacing:{after:240},children:[new TextRun('')]}),
+    h('3. ALT ÖLÇEK PUANLARI',2),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},
+      columnWidths:[3360,2000,2000,2000],
+      rows:[
+        new TableRow({children:[
+          cell('Dikkat Bileşeni',{bold:true,bg:'1A2E5A',color:'FFFFFF',w:3360}),
+          cell('Puan',{bold:true,bg:'1A2E5A',color:'FFFFFF',w:2000}),
+          cell('Sınıf Eşiği',{bold:true,bg:'1A2E5A',color:'FFFFFF',w:2000}),
+          cell('Durum',{bold:true,bg:'1A2E5A',color:'FFFFFF',w:2000}),
+        ]}),
+        ...SUBSCALE_INFO.map(si=>{
+          const perf = r[si.key]?.perf??0;
+          const cl = classify(perf,grade);
+          const statusColor = cl==='high'?'15803D':cl==='mid'?'B45309':'DC2626';
+          return new TableRow({children:[
+            cell(si.name,{w:3360}),
+            cell(`${perf} / 100`,{bold:true,w:2000}),
+            cell(`≥ ${GRADE_THRESH[grade]}`,{w:2000}),
+            cell(classLabel(cl),{bold:true,color:statusColor,w:2000}),
+          ]});
+        }),
+      ]
+    }),
+    new Paragraph({spacing:{after:240},children:[new TextRun('')]}),
+    hr(),
+    h('4. ALT ÖLÇEKLERİ KLİNİK YORUM',2),
+    ...SUBSCALE_INFO.flatMap(si=>{
+      const perf = r[si.key]?.perf??0;
+      const cl = classify(perf,grade);
+      const txt = si.interpretations[cl];
+      return [
+        new Paragraph({spacing:{after:80,before:120},children:[
+          new TextRun({text:`${si.name} (${perf}/100) — ${classLabel(cl)}`,bold:true,size:23,font:'Arial',color:'1A2E5A'}),
+        ]}),
+        new Paragraph({spacing:{after:140},indent:{left:360},children:[
+          new TextRun({text:txt,size:21,font:'Arial',color:'1E293B'}),
+        ]}),
+      ];
+    }),
+    hr(),
+    h('5. RAM YÖNLENDIRME DEĞERLENDİRMESİ',2),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},
+      columnWidths:[4680,4680],
+      rows:[
+        new TableRow({children:[
+          cell('RAM Skoru',{bold:true,bg:'FFF5F5',w:4680}),
+          cell(`${ramScore} / 100`,{bold:true,color:'B91C1C',w:4680}),
+        ]}),
+        new TableRow({children:[
+          cell('Yönlendirme Düzeyi',{bold:true,bg:'FFF5F5',w:4680}),
+          cell(ramLvl,{bold:true,color:'B91C1C',w:4680}),
+        ]}),
+      ]
+    }),
+    new Paragraph({spacing:{after:120,before:120},indent:{left:360},children:[
+      new TextRun({text:'Skor Aralıkları: 0–30 = Yönlendirme gerekmiyor | 31–55 = İzleme önerilir | 56–75 = Uzman görüşü alınmalı | 76–100 = RAM yönlendirmesi güçlü önerilir',size:20,font:'Arial',color:'64748B'}),
+    ]}),
+    new Paragraph({spacing:{after:240},children:[new TextRun('')]}),
+    hr(),
+    h('6. ÖNERILEN SONRAKI ADIMLAR',2),
+    ...[
+      ramScore <= 30 ? 'Dikkat bileşenlerinde belirgin güçlük örüntüsü öne çıkmamıştır. Rutin sınıf içi izlem ve öğretmen gözleminin sürdürülmesi önerilir.' : null,
+      ramScore > 30 && ramScore <= 55 ? 'Yapılandırılmış sınıf içi destek planlanması, öğretmen ve aile ile iş birliği kurulması ve 4–6 hafta içinde yeniden değerlendirme önerilir.' : null,
+      ramScore > 55 ? 'Çoklu bilgi kaynağına (öğretmen, aile, akademik ürünler, doğrudan gözlem) dayalı kapsamlı değerlendirme başlatılması, sınıf içi uyum desteği ve RAM yönlendirmesi değerlendirilmesi önerilir.' : null,
+      'Bu test sonuçları, öğrencinin gelişimsel öyküsü, akademik performansı ve sınıf içi işlevselliğiyle birlikte yorumlanmalıdır.',
+      'Klinik karar, yalnızca bu teste değil; birden fazla bilgi kaynağına dayanılarak verilmelidir.',
+    ].filter(Boolean).map((txt,i)=>new Paragraph({
+      spacing:{after:80},indent:{left:360},
+      children:[new TextRun({text:`${i+1}. ${txt}`,size:21,font:'Arial'})],
+    })),
+    new Paragraph({spacing:{after:240},children:[new TextRun('')]}),
+    hr(),
+    new Paragraph({spacing:{after:60},children:[
+      new TextRun({text:'UYARI: Bu rapor bir ön tarama çıktısıdır. Klinik ya da tıbbi tanı yerine geçmez.',size:19,font:'Arial',color:'64748B',italics:true}),
+    ]}),
+    new Paragraph({spacing:{after:400},children:[
+      new TextRun({text:`Oluşturulma tarihi: ${new Date().toLocaleDateString('tr-TR')} | Uygulayan: ${student.counselor||'—'}`,size:19,font:'Arial',color:'64748B',italics:true}),
+    ]}),
+    new Paragraph({spacing:{after:0},children:[new TextRun({text:'İmza / Mühür',bold:true,size:21,font:'Arial'})]}),
+    new Paragraph({children:[new TextRun({text:'____________________________',size:21,font:'Arial'})]}),
+  ];
+  
+  const docu = new Document({
+    styles:{
+      default:{ document:{run:{font:'Arial',size:22}} }
+    },
+    sections:[{
+      properties:{
+        page:{
+          size:{width:11906,height:16838},
+          margin:{top:1134,right:1134,bottom:1134,left:1134}
+        }
+      },
+      children
+    }]
+  });
+  
+  try{
+    const blob = await Packer.toBlob(docu);
+    const safeName = (student.name||'ogrenci').replace(/\s+/g,'_');
+    await saveBlob(blob, `Dikkat_Testi_${safeName}_${grade}sinif.docx`);
+  } catch(err){
+    alert('DOCX oluşturulurken hata: ' + err.message);
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  MÜDAHAle PLANI — VERİ TABANI
+// ════════════════════════════════════════════════════════
+const PLAN_DATA = {
+  t1: {
+    name:'Seçici Dikkat',icon:'🔍',color:'#7c3aed',bg:'linear-gradient(135deg,#7c3aed,#9333ea)',
+    summary:'Öğrenci, etrafında başka sesler, hareketler veya renkli uyaranlar olduğunda hedef bilgiye odaklanmakta güçlük çekiyor. Bu durum özellikle kalabalık sınıf ortamlarında ve görsel olarak yoğun materyallerle çalışırken belirginleşiyor.',
+    teacher:[
+      {title:'Oturma düzenini yeniden planlayın',desc:'Öğrenciyi mümkünse sınıfın ön sıralarına, pencere veya yoğun trafik alanından uzağa yerleştir. Kapı ya da koridora bakan bir masa dikkat dağıtıcı olabilir. Öğrencinin arkasında görsel materyal yoğunluğu azaltılmış bir duvar bölümü tercih edilmeli.',tip:'Araştırmalar, oturma yeri düzenlemesinin tek başına dikkat performansını anlamlı ölçüde iyileştirebildiğini gösteriyor (DuPaul & Stoner, 2003).'},
+      {title:'"Çalışma penceresi" kartı kullanın',desc:'A4 kağıdından ortası kesilmiş bir çerçeve hazırlayın. Öğrenci bu çerçeveyi sayfanın üzerine koyarak yalnızca o anki göreve ilişkin alanı görür; diğer sorular, resimler veya metin kapanır. Öğrenci bu karton çerçeveyi kendisi de kullanabilir.',tip:'Görsel filtreleme desteği (masking), özellikle okuma ve matematik çalışmalarında hata oranını düşürür.'},
+      {title:'Görsel yoğunluğu azaltın',desc:'Çalışma kağıtlarında gereksiz çerçeve, dekoratif öğe ve küçük yazıları minimize edin. Her sayfada tek bir görev olmasına özen gösterin. Test kağıtlarındaki maddeleri aralarında boşluk bırakarak düzenleyin.',tip:'Sade sayfa tasarımı, seçici dikkat güçlüğü olan öğrencilerin görevde kalma süresini uzatır.'},
+      {title:'Göreve giriş ritüeli oluşturun',desc:'Her ders ya da çalışma başında öğrenciye kısa bir "dikkat sinyali" verin: "Şimdi hazır mısın? Sadece bu sayfa." gibi basit bir sözel ipucu veya masaya hafifçe dokunmak bu işlevi görebilir. Öğrencinin görevle ilgili tek bilgiyle başlamasını sağlayın.',tip:'Yapılandırılmış başlangıç rutinleri, geçiş dönemlerindeki dikkat kaybını azaltır.'},
+      {title:'Dikkat dağıtıcıları yönetin',desc:'Öğrencinin kullanmadığı ders materyallerini (kalemler, silgi vb.) çalışma süresince bir kutu veya çantaya kaldırın. Sırasının üzerinde yalnızca o anki görev için gerekli materyaller bulunsun.',tip:'Masa düzeni, öğrencinin görsel dikkat kapasitesini gereksiz uyaranlara harcamasını önler.'},
+    ],
+    family:[
+      {title:'Ev ödevi için sessiz bir köşe belirleyin',desc:'Ödevin yapıldığı yerde televizyon, tablet veya yüksek sesli konuşmalar mümkün olduğunca kapalı olsun. Ödev köşesi sabit bir yer olmalı ve yalnızca ders için kullanılmalı; masa tozu, oyuncak veya dikkat çekecek nesnelerden arındırılmış olsun.',tip:'Çevresel uyaran kontrolü, ev ödevinde harcanan süreyi kısaltırken doğruluk oranını artırır.'},
+      {title:'Parça parça çalışma yöntemini deneyin',desc:'Uzun ödevleri küçük bölümlere ayırın. "Şu 5 soruyu bitirince mola veriyoruz" gibi somut hedefler koy. Her bölüm bitince kısa (2–3 dk) ve hareketli bir mola verin: su iç, gerin, küçük bir yürüyüş yap.',tip:'Pomodoro tekniğinin çocuklara uyarlanmış biçimi, dikkat performansını korur ve motivasyonu destekler.'},
+      {title:'"Dikkat oyunları" oynayın',desc:'Aile olarak haftada birkaç kez kısa dikkat oyunları oynayın: "Farkı bul" kartları, "Gizli nesneyi bul" kitapları, "Benzemeyeni bul" aktiviteleri. Bu oyunlar öğrenciye enerji harcatan, eğlenceli bir antrenman sağlar.',tip:'Görsel tarama ve filtreleme oyunları seçici dikkat kapasitesini destekler (Klingberg ve ark., 2005).'},
+      {title:'Gürültü kulaklığı veya kulak tıkacı deneyin',desc:'Ödev sırasında ev ortamı gürültülüyse, öğrencinin konsantrasyonunu korumak için hafif müzik (özellikle sözsüz, sakin) veya gürültü önleyici kulaklık kullanılabilir. Hangi seçeneğin işe yaradığını öğrenciyle birlikte keşfedin.',tip:'Akustik ortam kontrolü, dikkat dağıtıcı sesleri azaltarak odak süresini uzatır.'},
+    ]
+  },
+  t2: {
+    name:'Sürdürülen Dikkat',icon:'⏱',color:'#0369a1',bg:'linear-gradient(135deg,#0369a1,#0891b2)',
+    summary:'Öğrenci, bir göreve başlayabiliyor; ancak görev uzadıkça ya da aynı tür işi tekrarlamak gerektiğinde dikkatinin dağıldığı, hata oranının arttığı veya işi yarıda bıraktığı gözlemleniyor.',
+    teacher:[
+      {title:'Görevi küçük parçalara bölün (görev zinciri)',desc:'Uzun etkinlikleri net ara noktalara bölün: "İlk 4 soruyu yap, sonra dur" veya "Bu satırı bitir, kalk bir bardak su iç." Öğrencinin her aşamanın sonunda küçük bir başarı hissetmesi göreve dönme motivasyonunu artırır.',tip:'Görev segmentasyonu, öğrencinin sürekli dikkat kapasitesini bölümlere yayarak verimini korur (Zentall, 2005).'},
+      {title:'Göreve özel zamanlayıcı kullanın',desc:'Küçük bir mutfak zamanlayıcısı ya da görsel zamanlayıcı (Time Timer marka gibi) sınıfa getirebilirsiniz. "Bu süre dolana kadar çalışıyoruz" demek öğrenciye görevin ne zaman biteceğine dair somut bir çerçeve verir.',tip:'Dışsal zaman yapılanması, öz-düzenleme güçlüğü yaşayan öğrencilerde görevde kalma süresini artırır.'},
+      {title:'Görev sırasında ara sıra göz kontağı kurun',desc:'Öğrencinin masa başında olduğu sürede ara sıra yanına gidin, omzuna hafifçe dokunun veya "Devam et, iyi gidiyor" gibi kısa bir sözel destek ver. Bu, öğrencinin kaybolmadan göreve dönmesini sağlar.',tip:'Yakınlık ve sözel onay, davranışsal dikkat güçlüklerinde önemli bir dış düzenleyici işlev görür.'},
+      {title:'Görevi ilgi alanlarıyla ilişkilendirin',desc:'Mümkün olduğunda örnekleri, soruları veya etkinlikleri öğrencinin ilgi duyduğu konularla (hayvanlar, sporlar, oyunlar vb.) ilişkilendirin. Kişiselleştirilmiş içerik, dikkat süresini anlamlı ölçüde uzatabilir.',tip:'Motivasyonel bağlam, sürdürülen dikkat performansını olumlu etkiler (Barkley, 2015).'},
+      {title:'Hareket molası verin',desc:'Her 15–20 dakikada bir, tüm sınıf için 1–2 dakikalık germe, derin nefes veya ayağa kalkma molası planlayın. Kısa fiziksel aktiviteler zihinsel yorgunluğu azaltır ve odaklanmayı yeniler.',tip:'Kısa beden hareketleri, dikkat ve uyarılma düzeyini yükseltir (Pontifex ve ark., 2013).'},
+    ],
+    family:[
+      {title:'Ödev masasında saatin sesi olsun',desc:'Ödev yaparken "10 dakika çalış, 3 dakika mola" gibi bir düzen kurun. Molalarda ekran yerine su içme, koşma, germe gibi bedensel aktiviteler tercih edin. Zamanı koyun, dolunca durabilirsiniz; bu çok önemli.',tip:'Yapılandırılmış çalışma-mola döngüsü, ev ortamında dikkat süresini destekler.'},
+      {title:'Küçük hedefler ve anlık ödüller koyun',desc:'Uzun ödevi bölümlere ayırın ve her bölüm tamamlandığında somut, küçük bir ödül verin: stickerlar, seçim hakkı, kısa bir oyun. Ödülü önceden söyleyin: "Şu 4 soruyu bitirince istediğin bir şeyi yapabiliriz."',tip:'Kısa vadeli pekiştirme, sürdürülen dikkat güçlüğü olan çocuklarda görevde kalma davranışını artırır.'},
+      {title:'Görev ilerlemesini görünür hale getirin',desc:'Bir kağıda toplam görev sayısını çizin ve tamamlananları birlikte işaretleyin. "Kaç tane kaldı, kaç tane bitti" görmek, öğrencinin bitiş noktasını algılamasını kolaylaştırır ve motivasyonu korur.',tip:'Görsel ilerleme takibi, öz-düzenleme desteği sağlar.'},
+      {title:'Akşam rutinini erken başlatın',desc:'Dikkat yorgunluğu günün ikinci yarısında artar. Mümkünse ödevi öğleden sonra okul çıkışından 30–45 dakika sonra, kısa bir fiziksel aktivite molasının ardından yaptırın. Geç saatlerde yapılan ödevler verimsiz geçebilir.',tip:'Gün içi zamanlama, dikkat kapasitesinin en iyi kullanıldığı döneme göre planlanmalıdır.'},
+    ]
+  },
+  t3: {
+    name:'Bölünmüş Dikkat',icon:'👀',color:'#0891b2',bg:'linear-gradient(135deg,#0891b2,#06b6d4)',
+    summary:'Öğrenci, aynı anda iki farklı işi birlikte yürütmekte güçlük çekiyor. Örneğin tahtayı izlerken not almak, hem dinleyip hem yazmak veya bir etkinliği takip ederken yönergeyi aklında tutmak zorlaşıyor.',
+    teacher:[
+      {title:'Önce dinle, sonra yaz kuralını uygulayın',desc:'Öğrenciye "Tahtaya bak ve dinle — ben durduğumda yaz" düzenini tanıtın. Kısa açıklamalar yapın, ardından öğrenciye yazmak için zaman verin. Her ikisini aynı anda bekleme; aşamalı olarak ilerle.',tip:'Görev ayrıştırma yöntemi, bölünmüş dikkat yükünü azaltarak her iki bilgiye de erişimi kolaylaştırır.'},
+      {title:'Tahtaya yazmadan önce sözlü özet sunun',desc:'Tahtaya uzun notlar yazmadan önce "Şimdi şunu yazacaksınız: …" diye kısaca söyleyin. Öğrenci ne yazacağını bildiğinde kopyalama görevi anlayışla bütünleşir, bu da bölünmüş dikkat yükünü düşürür.',tip:'Ön bilgilendirme (priming), çift görev koşullarında performansı artırır.'},
+      {title:'Ders notlarını kısmi doldurma formatında verin',desc:'Öğrenciye derste bazı boşlukları bırakılmış hazır not şablonları verin. Öğrenci her şeyi sıfırdan yazmak yerine dinlediği bilgiyle boşlukları doldurur. Böylece hem dinliyor hem de not tutuyor.',tip:'Kısmen yapılandırılmış notlar, görme-işitme bölünmüş dikkat yükünü önemli ölçüde azaltır (Swanson & Sachse-Lee, 2001).'},
+      {title:'Görsel-işitsel uyumu somutlaştırın',desc:'Bir etkinliği hem sözlü anlatın hem de tahtada gösterin; ancak önce birini bitirin, sonra diğerini başlatın. Eş zamanlı çift kanal sunum bu öğrenci için aşırı yükleyici olabilir.',tip:'Tek kanallı bilgi sunumu, bölünmüş dikkat güçlüğü olan öğrencilerin bilgiyi işlemesini kolaylaştırır.'},
+    ],
+    family:[
+      {title:'Ev ödevinde çift görev talep etmeyin',desc:'Ödev yaparken arka planda televizyon veya yüksek sesli müzik olmasın. Öğrenciden aynı anda hem bir şeyi dinleyip hem de yazmasını bekleme. Önce bir görevi bitir, ardından diğerine geç.',tip:'Ev ortamındaki dikkat yükü azaltıldığında ödev süresi ve kalitesi anlamlı biçimde iyileşir.'},
+      {title:'"Sırayla iş" oyunu oynayın',desc:'Günlük hayatta "önce şunu, sonra şunu" pratiği yapın. Örneğin: "Önce yemeğini bitir, sonra sana bir şey söyleyeceğim." Bu, öğrencinin adım adım düşünme ve sıralı iş yapma becerisini destekler.',tip:'Günlük hayat rutinleri, bölünmüş dikkat kapasitesini geliştiren doğal antrenman fırsatları sunar.'},
+      {title:'Çoklu adımlı yönergeyi basitleştirin',desc:'Öğrenciye aynı anda birden fazla şey söylediğinizde hangisini yapmaya çalışacağını bilemeyebilir. Yönergeleri tek tek verin: önce birini yapmasını bekleyin, sonra bir sonrakini söyleyin.',tip:'Basitleştirilmiş yönerge yapısı, bölünmüş dikkat güçlüğü olan çocuklarda uyumu artırır.'},
+      {title:'Sıra hatırlama oyunları oynayın',desc:'"Kim Milyoner Olmak İster" tarzı soru-cevap oyunları, hafıza kartı oyunları veya "Ne aldım marketten" sıra hatırlama oyunları eğlenceli ve etkili bir destek sağlar. Bu oyunlar bilgiyi takip etme kapasitesini güçlendirir.',tip:'Aile oyunları, bölünmüş dikkat ve çalışma belleğini destekleyen düşük yüklü antrenman ortamı oluşturur.'},
+    ]
+  },
+  t4: {
+    name:'Dikkati Kaydırma / Esneklik',icon:'🔄',color:'#b45309',bg:'linear-gradient(135deg,#b45309,#d97706)',
+    summary:'Öğrenci, bir etkinlikten diğerine geçmekte, yeni kurala uyum sağlamakta veya bir strateji işe yaramadığında farklı bir yol denemekte zorlanıyor. Geçiş dönemlerinde direnç ya da dağınıklık yaşanabiliyor.',
+    teacher:[
+      {title:'Geçiş öncesi uyarı verin',desc:'Etkinlik değişmeden 2–3 dakika önce "2 dakika sonra matematik kitabını kapatıp beden eğitimine geçiyoruz" gibi bir ön uyarı yapın. Bu sayede öğrenci zihinsel olarak geçişe hazırlanabilir.',tip:'Geçiş uyarıları, kural değişimlerinde esnekliği güçleştiren bilişsel katılığı azaltır (Zelazo & Müller, 2002).'},
+      {title:'Günlük programı görünür hale getirin',desc:'Sınıfın bir köşesine ya da öğrencinin masasına günün etkinliklerini sırayla gösteren basit bir liste asın. Etkinlik bittikçe üzerini çizin. Böylece öğrenci neyin ardından ne geleceğini önceden bilir.',tip:'Görsel günlük çizelgesi, geçiş esnekliğini destekleyen en güçlü ortamsal düzenlemelerden biridir.'},
+      {title:'Kural değişikliklerini görsel olarak işaretleyin',desc:'Farklı etkinlikler veya farklı kurallar için farklı renk kartları ya da semboller kullanın. Örneğin mavi kart = "şimdi yazı yazıyoruz", sarı kart = "dinliyoruz". Kart değişince kural da değişmiş demektir.',tip:'Renk kodlu kural sistemleri, kurala uyumu ve kurallar arası geçişi kolaylaştırır.'},
+      {title:'Hata yaptığında yeniden yönlendirin, cezalandırmayın',desc:'Öğrenci eski kuralla devam ettiğinde "Dur bir dakika, kural değişti, şimdi ne yapıyoruz?" diye nazikçe yeniden yönlendirin. Hatayı büyütmeden, sakin ve kısa bir ipucuyla devam etmesini sağlayın.',tip:'Hata sonrası yeniden yönlendirme, cezadan çok daha etkili bir öğrenme geri bildirimi sağlar.'},
+    ],
+    family:[
+      {title:'Ev rutinlerini düzenli tutun',desc:'Akşam rutinlerini mümkün olduğunca sabit sırada uygulayın: akşam yemeği → ödev → oyun → banyo → uyku. Sıranın her gün aynı olması, öğrencinin geçişlere alışmasını kolaylaştırır.',tip:'Tutarlı ev rutinleri, yürütücü işlev ve geçiş esnekliğini destekler.'},
+      {title:'"Şimdi bu, sonra o" görselini kullanın',desc:'Bir kağıda "Şimdi: ders / Sonra: oyun" gibi basit bir görsel yapın. Öğrenci o anki görevi gördüğünde neden devam etmesi gerektiğini ve ardından ne kazanacağını net biçimde bilir.',tip:'Önce-sonra görsel çizelgeleri, geçiş direncini azaltan kanıta dayalı bir stratejidir.'},
+      {title:'Sona erme sinyali kullanın',desc:'Bir etkinliği bitirirken "5 dakikan daha var" diye haber verin. Zamanlayıcı veya küçük bir zil bu işlevi görebilir. Ani bitişler yerine hazırlanma zamanı vermek, geçişteki tepkileri yumuşatır.',tip:'Öngörülebilir bitiş sinyalleri, ani geçişlerin tetiklediği davranışsal tepkileri azaltır.'},
+      {title:'Sıra değiştirme oyunları oynayın',desc:'"Simon Diyor" oyunu, kural değiştirme gerektiren kart oyunları (Uno gibi), renkten renge geçiş gerektiren basit masa oyunları öğrencinin esneklik becerisini eğlenceli bir şekilde geliştirir.',tip:'Kurallı oyunlar, yürütücü işlev ve bilişsel esnekliği destekleyen düşük yüklü bir antrenman ortamı sunar.'},
+    ]
+  },
+  t5: {
+    name:'Dürtü Denetimi',icon:'🛑',color:'#b91c1c',bg:'linear-gradient(135deg,#b91c1c,#dc2626)',
+    summary:'Öğrenci, tepkisini geciktirmekte, sırasını beklemekte veya "dur" sinyalini almasına rağmen işi bırakmakta güçlük çekiyor. Soruyu dinlemeden cevaplamak, aceleyle hareket etmek ve araya girmek sık gözlemleniyor.',
+    teacher:[
+      {title:'"Önce düşün, sonra söyle" rutini oluşturun',desc:'Soru sorduğunuzda kısa bir bekleme süresi (3–5 saniye) koyun. "Önce herkes düşünüyor, ben 5 sayıyorum, sonra el kaldırıyoruz" kuralını tüm sınıfa uygulayın. Bu öğrenciyi tekilleştirmez, herkese eşit bir yapı sağlar.',tip:'Bekletme süresi (wait time) stratejisi, dürtüsel yanıt verme davranışını azaltır (Rowe, 1986).'},
+      {title:'Beden hareketi için meşru alan tanımlayın',desc:'Öğrenciye sınıf içinde hareket edebileceği izinli alanlar ve zamanlar belirleyin: kağıtları dağıtma görevi, tahtaya gitme, silgiyi yerine koyma gibi küçük sorumluluklar. Bu, dürtüsel hareketi fırsata çevirir.',tip:'Hareketli görevler, motor dürtüselliği olan öğrencilerin uyumlu davranış sergilemesine yardımcı olur.'},
+      {title:'Durdurma sinyali olarak görsel kart kullanın',desc:'Öğrencinin masasının üstünde küçük bir "dur" kartı bulunabilir. Sınav ya da sessiz çalışma döneminde öğrenci acele etmek istediğinde bu karta bakarak kendini hatırlatmayı öğrenir.',tip:'Görsel öz-hatırlatıcılar, sözel uyarılardan daha az dirençle karşılanır ve öz-denetimi destekler.'},
+      {title:'Pozitif pekiştirme kullanın',desc:'Öğrenci sırasını beklediğinde veya yönergeyi dinleyip bekledikten sonra işe başladığında bunu fark edin ve somut olarak takdir edin: "Tam istediğim gibi bekledin, aferin." Bu tutumu sık tekrarla.',tip:'Anlık sözel pekiştirme, dürtü denetimiyle ilişkili dikkat davranışlarının geliştirilmesinde güçlü bir araçtır (Barkley, 2015).'},
+      {title:'Yönergeyi kontrol etme alışkanlığı kazandırın',desc:'Bir çalışma ya da sınav başlamadan önce "Yönergeyi oku, anlamayanlar el kaldırsın" rutinini uygulayın. Öğrencinin işe başlamadan önce yönergeyi gözden geçirme alışkanlığı edinmesi, hata oranını düşürür.',tip:'Yönerge kontrol rutini, dürtüsel başlama hatasını azaltır.'},
+    ],
+    family:[
+      {title:'"Dur ve düşün" oyunu oynayın',desc:'Günlük anlarda "dur ve düşün" pratiği yapın. Örneğin bir oyun ya da aktivite başlamadan önce "Bir düşün bakalım, nasıl yapacaksın?" diye sorun. Aceleyle cevap vermek yerine kısa bir bekleme alışkanlığı oluşturun.',tip:'Günlük hayatta uygulanan "dur ve düşün" stratejisi, dürtü denetiminin gelişmesine katkı sağlar.'},
+      {title:'Bekleyebilme becerisini günlük hayatta pekiştirin',desc:'Sıra bekleme alışkanlıklarını küçük anlarda destekleyin: oyun sırası, sofrada bir şey isteme, kardeşiyle sırayla konuşma. Her doğru bekleyişi sözlü olarak takdir edin.',tip:'Gerçek yaşam deneyimleri, dürtü denetiminin en etkili antrenman alanıdır.'},
+      {title:'Hata sonrası sakin kalın',desc:'Öğrenci dürtüsel davrandığında öfkelenmek ya da uzun tartışmalar yerine kısa, sakin bir geri bildirim verin: "Dur bir dakika, yeniden dene." Aşırı tepkiler, dürtüsel davranışı azaltmaz; aksine artırabilir.',tip:'Sakin ve kısa geribildirim, dürtüsel davranış döngüsünü kırar (Barkley & Robin, 2014).'},
+      {title:'"Bekleyebiliyorum" oyunları oynayın',desc:'"Simon Diyor", kartlı hafıza oyunları, "dondum" gibi oyunlar dürtü denetimini doğrudan eğitir. Haftalık aile oyun zamanı bu oyunlara yer verin.',tip:'Oyun temelli inhibisyon antrenmanı, özellikle 6–10 yaş grubunda etkili sonuçlar vermektedir.'},
+    ]
+  },
+  t6: {
+    name:'Çalışma Belleği / İşitsel Yönerge',icon:'🧠',color:'#15803d',bg:'linear-gradient(135deg,#15803d,#16a34a)',
+    summary:'Öğrenci, birden fazla adımdan oluşan yönergeleri aklında tutmakta, sıralı işlemleri doğru biçimde uygulamakta ve daha önce söylenen bir bilgiyi hatırlayarak kullanmakta güçlük çekiyor.',
+    teacher:[
+      {title:'Yönergeyi adım adım, tek tek verin',desc:'Çok adımlı yönergeleri bölümlere ayırarak verin: önce ilk adımı söyleyin ve öğrenci bunu yaparken bekleyin; ardından ikinci adımı söyleyin. Tek seferde 3–4 adım vermek, bilgiyi akılda tutmayı zorlaştırır.',tip:'Yönerge segmentasyonu, çalışma belleği kapasitesini aşmadan bilginin işlenmesini sağlar (Gathercole & Alloway, 2008).'},
+      {title:'Yönergeyi görsel destekle sunun',desc:'Sözel yönergeyi tahtaya kısa adımlar halinde yazın veya numaralı bir kart verin: "1. Defteri aç, 2. Başlığı yaz, 3. Tarihi ekle." Öğrenci sözel bilgiyi kaybetse bile görsel ipucuna başvurabilir.',tip:'Görsel destekler, işitsel çalışma belleğinin yetersiz kaldığı durumlarda bilgiye erişimi kolaylaştırır.'},
+      {title:'"Tekrar et ve başla" kuralını uygulayın',desc:'Yönerge verildikten sonra öğrenciye "Ne yapacaksın?" diye sorun. Kendi sözcükleriyle tekrar etmesini isteyin. Bu aktif tekrar, bilgiyi kısa süreli bellekte tutar.',tip:'Sözel tekrar (rehearsal) stratejisi, çalışma belleği performansını güçlendiren temel tekniklerden biridir.'},
+      {title:'Adım kartları hazırlayın',desc:'Sıkça tekrarlanan işlemler için (kitap açma sırası, çalışma sayfası doldurma adımları) resimli ya da yazılı adım kartları hazırlayın. Öğrenci bunlara bakarak sırayı takip edebilir.',tip:'Harici bellek destekleri (adım kartları), çalışma belleği yükünü azaltır.'},
+      {title:'Derste bilgi tekrarını sıklaştırın',desc:'Açıkladıktan birkaç dakika sonra "Az önce ne söyledim?" diye öğrencilere kısa sorular sorun. Bu anlık tekrar aktiviteleri, kısa süreli bellekten uzun süreli belleğe aktarımı güçlendirir.',tip:'Dağıtılmış tekrar (spaced retrieval) çalışma belleği desteğini pekiştirir.'},
+    ],
+    family:[
+      {title:'Ev ödevinde sözlü yönergeyi tekrar ettirin',desc:'Ödev için yönerge verdikten sonra "Anlattım, sen anlat bakalım" diye sorun. Öğrencinin yönergeyi kendi cümleleriyle tekrar etmesi, bilgiyi aklında tutmasını sağlar.',tip:'Sözel tekrar stratejisi, hem öğrencinin anlamadığını erken fark ettirmekte hem de bellek sağlamlaştırmayı desteklemektedir.'},
+      {title:'"Alışveriş listesi" oyunu oynayın',desc:'"Markete gidiyorum ve çantama koyuyorum…" oyununu oynayın. Her turda önceki listeyi tekrar edip yeni bir şey ekleyin. Bu oyun hem eğlenceli hem de sıralı belleği doğrudan antren eder.',tip:'Sıra hatırlama oyunları, çalışma belleği kapasitesini destekleyen düşük yüklü oyun antrenmanıdır.'},
+      {title:'Yönergeyi bölümlere ayırın',desc:'Öğrenciye bir seferde iki görev vermeyin. "Önce ellerini yıka" — bitirir — "sonra masaya gel." Her görevi bitirmesini bekleyin, ardından bir sonrakini söyleyin.',tip:'Sıralı yönerge verme, çalışma belleği yükünü azaltarak uyumu artırır.'},
+      {title:'Hafıza oyunları oynayın',desc:'Kart eşleştirme oyunları, "Ne eksik?" (masadan birini kaldır, hangisi eksik?), renk-şekil sıra oyunları ve hikâye sıralama oyunları çalışma belleğini destekler. Haftada birkaç kez kısa oyun seansları organize edin.',tip:'Oyun temelli hafıza antrenmanı, okul öncesi ve ilkokul döneminde çalışma belleği gelişimine katkıda bulunur (Bergman Nutley ve ark., 2011).'},
+    ]
+  }
+};
+
+const GENERAL_PRINCIPLES = [
+  {icon:'🤝',title:'Öğretmen–Aile İş Birliği',text:'Sınıfta uygulanan stratejiler evde de benzer şekilde desteklendiğinde etki çok daha güçlü oluyor. Düzenli kısa görüşmeler ya da bir not defteri bu koordinasyonu sağlayabilir.'},
+  {icon:'🌱',title:'Sabır ve İstikrar',text:'Dikkat becerileri anlık değil, zamanla gelişir. İlk haftalarda büyük bir değişiklik beklememek; stratejileri tutarlı biçimde uygulamak çok daha önemlidir.'},
+  {icon:'💬',title:'Olumlu Dil Kullanın',text:'"Neden dinlemiyorsun?" yerine "Hadi birlikte bakalım." gibi çözüm odaklı bir dil, öğrencinin motivasyonunu korur ve öz saygısını destekler.'},
+  {icon:'🎯',title:'Küçük Başarıları Kutlayın',text:'Öğrenci her doğru adımda olumlu geribildirim aldığında "Yapabiliyorum" inancı güçlenir. Bu, uzun vadeli gelişimin temelidir.'},
+  {icon:'📋',title:'Rutin ve Öngörülebilirlik',text:'Günlük rutin ne kadar öngörülebilirse, öğrenci dikkatini kurala ve göreve o kadar kolay yöneltebilir. Belirsiz geçişler zorlanmaya yol açar.'},
+  {icon:'🔄',title:'Yaklaşımları Esnekçe Güncelleyin',text:'Her çocuk farklıdır. Bir strateji işe yaramıyorsa vazgeçmeden önce birkaç hafta verin; işe yarıyorsa benzer stratejiler deneyebilirsiniz.'},
+];
+
+// ════════════════════════════════════════════════════════
+//  MÜDAHALe PLANI — RENDER
+// ════════════════════════════════════════════════════════
+function generatePlan(){
+  const {student, grade, taskResults:r} = S;
+  const dateStr = student.date ? new Date(student.date).toLocaleDateString('tr-TR') : '—';
+  
+  const planLine = document.getElementById('plan-student-line');
+  if(planLine) planLine.innerHTML = `<strong>${student.name}</strong> · ${grade}. Sınıf · ${dateStr} — Öğretmen ve Aile İçin Destek Planı`;
+  
+  const weakAreas = SUBSCALE_INFO.filter(si=>{
+    const cl = classify(r[si.key]?.perf??0, grade);
+    return cl === 'mid' || cl === 'low';
+  });
+  
+  const container = document.getElementById('plan-content');
+  if(!container) return;
+  
+  if(weakAreas.length === 0){
+    container.innerHTML = `
+      <div class="plan-no-issues">
+        <div class="big-ok">🎉</div>
+        <h3>Belirgin Güçlük Alanı Saptanmadı</h3>
+        <p>Bu testte ölçülen tüm dikkat bileşenleri, ${grade}. sınıf beklentileriyle uyumlu bulunmuştur. Herhangi bir müdahale planı hazırlanmasına gerek görülmemektedir.<br><br>
+        Sınıf içi gözlemlerin sürdürülmesi ve öğretmen–aile iletişiminin açık tutulması yeterlidir. Kaygı yaratan yeni bir durum gözlemlenirse değerlendirme yenilenebilir.</p>
+      </div>
+      <div class="plan-general">
+        <h3>💡 Her Çocuk İçin Geçerli Genel İpuçları</h3>
+        <div class="plan-general-items">${GENERAL_PRINCIPLES.map(g=>`
+          <div class="plan-general-item">
+            <div class="gi-title">${g.icon} ${g.title}</div>
+            <p>${g.text}</p>
+          </div>`).join('')}</div>
+      </div>
+      ${planActionRow(false)}
+      ${planRefBox()}`;
+    return;
+  }
+  
+  const areaCards = weakAreas.map(si=>{
+    const pd = PLAN_DATA[si.key];
+    const cl = classify(r[si.key]?.perf??0, grade);
+    const clLabel = cl==='low'?'Belirgin Güçlük':'İzlem Gerektirir';
+    const clColor = cl==='low'?'#dc2626':'#d97706';
+    return `<div class="plan-card" id="plan-card-${si.key}">
+      <div class="plan-card-header" style="background:${pd.bg}">
+        <div class="ph-icon">${pd.icon}</div>
+        <div style="flex:1">
+          <h3>${pd.name}</h3>
+          <p>${pd.summary}</p>
+        </div>
+        <div style="background:rgba(255,255,255,.2);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:800;white-space:nowrap;align-self:flex-start">${clLabel}</div>
+      </div>
+      <div class="plan-card-body">
+        ${audienceSection('teacher', '📚 Sınıf Öğretmeni İçin', pd.teacher, pd.color, si.key)}
+        ${audienceSection('family', '👪 Aile İçin', pd.family, pd.color, si.key)}
+      </div>
+    </div>`;
+  }).join('');
+  
+  container.innerHTML = `
+    <div class="plan-intro-box">
+      <div class="intro-title">ℹ️ Bu Plan Hakkında</div>
+      <p>Aşağıdaki müdahale önerileri, test sonucunda <strong>izlem gerektiren veya belirgin güçlük gösteren</strong> dikkat alanlarına yönelik hazırlanmıştır. Her alan için sınıf ortamına yönelik <strong>öğretmen önerileri</strong> ve ev ortamına yönelik <strong>aile önerileri</strong> ayrı ayrı sunulmuştur. Öneriler bilimsel literatürden yararlanılarak oluşturulmuş, günlük hayatta uygulanabilecek somut adımlar biçiminde aktarılmıştır.</p>
+    </div>
+    ${areaCards}
+    <div class="plan-general">
+      <h3>💡 Her İki Taraf İçin Genel İlkeler</h3>
+      <div class="plan-general-items">${GENERAL_PRINCIPLES.map(g=>`
+        <div class="plan-general-item">
+          <div class="gi-title">${g.icon} ${g.title}</div>
+          <p>${g.text}</p>
+        </div>`).join('')}</div>
+    </div>
+    ${planActionRow(true)}
+    ${planRefBox()}`;
+  
+  // Accordion behavior
+  container.querySelectorAll('.plan-audience-header').forEach(hdr=>{
+    const toggle = ()=>{
+      const body = hdr.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      const card = hdr.closest('.plan-card');
+      card.querySelectorAll('.plan-audience-body').forEach(b=>b.classList.remove('open'));
+      card.querySelectorAll('.plan-audience-header').forEach(h=>h.classList.remove('open'));
+      if(!isOpen){ body.classList.add('open'); hdr.classList.add('open'); }
+    };
+    let touching=false;
+    hdr.addEventListener('touchend',(e)=>{ e.preventDefault(); touching=true; toggle(); setTimeout(()=>{touching=false;},400); },{passive:false});
+    hdr.addEventListener('click',()=>{ if(!touching) toggle(); });
+  });
+  // Open first audience in each card by default
+  container.querySelectorAll('.plan-card').forEach(card=>{
+    const firstHdr = card.querySelector('.plan-audience-header');
+    const firstBody = card.querySelector('.plan-audience-body');
+    if(firstHdr && firstBody){ firstHdr.classList.add('open'); firstBody.classList.add('open'); }
+  });
+}
+
+function audienceSection(type, title, strategies, color, key){
+  const nums = ['①','②','③','④','⑤'];
+  const items = strategies.map((s,i)=>`
+    <div class="plan-strategy">
+      <div class="plan-strategy-num" style="background:${color}">${nums[i]||i+1}</div>
+      <div class="plan-strategy-content">
+        <div class="plan-strategy-title">${s.title}</div>
+        <div class="plan-strategy-desc">${s.desc}</div>
+        ${s.tip?`<div class="plan-strategy-tip">📌 ${s.tip}</div>`:''}
+      </div>
+    </div>`).join('');
+  return `<div class="plan-audience">
+    <div class="plan-audience-header">
+      <div class="aud-icon ${type}">${type==='teacher'?'📚':'👪'}</div>
+      <h4>${title}</h4>
+      <span class="toggle-arrow">▼</span>
+    </div>
+    <div class="plan-audience-body">${items}</div>
+  </div>`;
+}
+
+function planActionRow(hasPlan){
+  return `<div class="plan-action-row">
+    ${hasPlan?`<button class="btn-plan-dl" onclick="downloadPlanDocx()" ontouchstart="">⬇ Müdahale Planını DOCX İndir</button>`:''}
+    <button class="btn-print" onclick="window.print()" ontouchstart="">🖨 Yazdır</button>
+    <button class="btn-restart" onclick="restartTest()" ontouchstart="">↺ Yeni Test</button>
+  </div>`;
+}
+
+function planRefBox(){
+  return `<div class="plan-ref-box">
+    <strong>📚 Bu Planda Yararlanılan Kaynaklar</strong>
+    Barkley, R.A. (2015). <em>Attention-Deficit Hyperactivity Disorder: A Handbook for Diagnosis and Treatment.</em> — 
+    DuPaul, G.J. & Stoner, G. (2003). <em>ADHD in the Schools.</em> — 
+    Gathercole, S.E. & Alloway, T.P. (2008). <em>Working Memory and Learning.</em> — 
+    Klingberg, T. et al. (2005). Computerized training of working memory. <em>JAACAP.</em> — 
+    Pontifex, M.B. et al. (2013). Exercise improves behavioural, neurocognitive, and scholastic performance. <em>Journal of Pediatrics.</em> — 
+    Zentall, S.S. (2005). <em>Theory and Evidence-Based Strategies for Children with Attentional Problems.</em> — 
+    Zelazo, P.D. & Müller, U. (2002). Executive function in typical and atypical development. <em>Handbook of Childhood Cognitive Development.</em>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════════════
+//  MÜDAHALE PLANI DOCX
+// ════════════════════════════════════════════════════════
+async function downloadPlanDocx(){
+  if(typeof docx === 'undefined'){
+    alert('DOCX indirmek için internet bağlantısı gereklidir. Lütfen bağlantınızı kontrol edip tekrar deneyin.');
+    return;
+  }
+  const {student, grade, taskResults:r} = S;
+  const dateStr = student.date ? new Date(student.date).toLocaleDateString('tr-TR') : '—';
+  const {Document,Packer,Paragraph,TextRun,Table,TableRow,TableCell,AlignmentType,HeadingLevel,BorderStyle,WidthType,ShadingType,LevelFormat} = docx;
+  
+  const bdr = (c='CCCCCC')=>({style:BorderStyle.SINGLE,size:1,color:c});
+  const borders = (c='CCCCCC')=>({top:bdr(c),bottom:bdr(c),left:bdr(c),right:bdr(c)});
+  const p = (text,{bold,size,color,indent,spacing}={})=>new Paragraph({
+    indent:indent?{left:360}:{},
+    spacing:{after:spacing??80},
+    children:[new TextRun({text:String(text),font:'Arial',size:size||22,bold:bold||false,color:color||'1E293B'})]
+  });
+  const h2 = (text,color='1A2E5A')=>new Paragraph({
+    spacing:{before:200,after:100},
+    children:[new TextRun({text,bold:true,font:'Arial',size:26,color})]
+  });
+  const hr = ()=>new Paragraph({
+    border:{bottom:{style:BorderStyle.SINGLE,size:6,color:'1A2E5A',space:1}},
+    spacing:{after:160,before:80},children:[new TextRun('')]
+  });
+  
+  const weakAreas = SUBSCALE_INFO.filter(si=>['mid','low'].includes(classify(r[si.key]?.perf??0,grade)));
+  
+  const children = [
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},children:[
+      new TextRun({text:'MÜDAHAle PLANI',bold:true,size:36,font:'Arial',color:'065F46'}),
+    ]}),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:40},children:[
+      new TextRun({text:'Sınıf Öğretmeni ve Aile İçin Dikkat Desteği Rehberi',size:22,font:'Arial',color:'047857'}),
+    ]}),
+    new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:300},children:[
+      new TextRun({text:`Performansa Dayalı Dikkat Değerlendirme Testine Dayanılarak Hazırlanmıştır`,size:20,font:'Arial',color:'64748B',italics:true}),
+    ]}),
+    hr(),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},columnWidths:[2340,2340,2340,2340],
+      rows:[
+        new TableRow({children:[
+          new TableCell({width:{size:2340,type:WidthType.DXA},borders:borders('CCCCCC'),shading:{fill:'E0FDF4',type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:120,right:120},children:[p('Öğrenci Adı',{bold:true})]}),
+          new TableCell({width:{size:2340,type:WidthType.DXA},borders:borders('CCCCCC'),margins:{top:80,bottom:80,left:120,right:120},children:[p(student.name||'—')]}),
+          new TableCell({width:{size:2340,type:WidthType.DXA},borders:borders('CCCCCC'),shading:{fill:'E0FDF4',type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:120,right:120},children:[p('Sınıf / Tarih',{bold:true})]}),
+          new TableCell({width:{size:2340,type:WidthType.DXA},borders:borders('CCCCCC'),margins:{top:80,bottom:80,left:120,right:120},children:[p(`${grade}. Sınıf — ${dateStr}`)]}),
+        ]}),
+      ]
+    }),
+    new Paragraph({spacing:{after:200},children:[new TextRun('')]}),
+    ...weakAreas.flatMap(si=>{
+      const pd = PLAN_DATA[si.key];
+      const cl = classify(r[si.key]?.perf??0,grade);
+      const clTR = cl==='low'?'Belirgin Güçlük':'İzlem Gerektirir';
+      return [
+        hr(),
+        new Paragraph({spacing:{before:160,after:80},children:[
+          new TextRun({text:`${pd.icon}  ${pd.name}  ·  ${clTR}`,bold:true,size:28,font:'Arial',color:'065F46'}),
+        ]}),
+        p(pd.summary,{color:'334155',indent:false,spacing:120}),
+        new Paragraph({spacing:{after:60,before:120},children:[new TextRun({text:'📚  SINIF ÖĞRETMENİ İÇİN',bold:true,size:23,font:'Arial',color:'1A2E5A'})]}),
+        ...pd.teacher.flatMap((s,i)=>[
+          new Paragraph({spacing:{before:80,after:40},indent:{left:240},children:[new TextRun({text:`${i+1}. ${s.title}`,bold:true,size:22,font:'Arial',color:'1A2E5A'})]}),
+          new Paragraph({spacing:{after:50},indent:{left:480},children:[new TextRun({text:s.desc,size:21,font:'Arial',color:'1E293B'})]}),
+          new Paragraph({spacing:{after:100},indent:{left:480},children:[new TextRun({text:`📌 ${s.tip}`,size:19,font:'Arial',color:'64748B',italics:true})]}),
+        ]),
+        new Paragraph({spacing:{after:60,before:120},children:[new TextRun({text:'👪  AİLE İÇİN',bold:true,size:23,font:'Arial',color:'065F46'})]}),
+        ...pd.family.flatMap((s,i)=>[
+          new Paragraph({spacing:{before:80,after:40},indent:{left:240},children:[new TextRun({text:`${i+1}. ${s.title}`,bold:true,size:22,font:'Arial',color:'065F46'})]}),
+          new Paragraph({spacing:{after:50},indent:{left:480},children:[new TextRun({text:s.desc,size:21,font:'Arial',color:'1E293B'})]}),
+          new Paragraph({spacing:{after:100},indent:{left:480},children:[new TextRun({text:`📌 ${s.tip}`,size:19,font:'Arial',color:'64748B',italics:true})]}),
+        ]),
+        new Paragraph({spacing:{after:120},children:[new TextRun('')]}),
+      ];
+    }),
+    hr(),
+    new Paragraph({spacing:{before:100,after:60},children:[new TextRun({text:'💡  GENEL İLKELER',bold:true,size:24,font:'Arial',color:'1A2E5A'})]}),
+    ...GENERAL_PRINCIPLES.map(g=>new Paragraph({spacing:{after:80},children:[
+      new TextRun({text:`${g.icon} ${g.title}: `,bold:true,size:21,font:'Arial',color:'1A2E5A'}),
+      new TextRun({text:g.text,size:21,font:'Arial',color:'1E293B'}),
+    ]})),
+    hr(),
+    p('Bu müdahale planı, Performansa Dayalı Dikkat Değerlendirme Testi sonuçlarına dayalı olarak hazırlanmıştır.',{color:'64748B',size:18,spacing:60}),
+    p('Klinik tanı yerine geçmez. Uygulanan stratejilerin etkisi birkaç hafta içinde gözlemlenmelidir.',{color:'64748B',size:18,spacing:60}),
+    p(`Hazırlayan Psikolojik Danışman: ${student.counselor||'—'}   |   Tarih: ${new Date().toLocaleDateString('tr-TR')}`,{color:'64748B',size:18,spacing:80}),
+    hr(),
+    new Paragraph({spacing:{before:80,after:120},children:[new TextRun({text:'İMZA VE ONAY',bold:true,size:24,font:'Arial',color:'1A2E5A'})]}),
+    new Table({
+      width:{size:9360,type:WidthType.DXA},columnWidths:[4680,4680],
+      rows:[
+        new TableRow({children:[
+          new TableCell({width:{size:4680,type:WidthType.DXA},borders:borders('CCCCCC'),shading:{fill:'EFF6FF',type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:120,right:120},children:[
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'SINIF ÖĞRETMENİ',bold:true,size:22,font:'Arial',color:'1A2E5A'})]}),
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'Ad Soyad: ________________________________',size:21,font:'Arial'})]}),
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'Tarih:        ________________________________',size:21,font:'Arial'})]}),
+            new Paragraph({spacing:{after:320},children:[new TextRun({text:'İmza:          ________________________________',size:21,font:'Arial'})]}),
+          ]}),
+          new TableCell({width:{size:4680,type:WidthType.DXA},borders:borders('CCCCCC'),shading:{fill:'F0FDF4',type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:120,right:120},children:[
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'VELİ / AİLE TEMSİLCİSİ',bold:true,size:22,font:'Arial',color:'065F46'})]}),
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'Ad Soyad: ________________________________',size:21,font:'Arial'})]}),
+            new Paragraph({spacing:{after:40},children:[new TextRun({text:'Tarih:        ________________________________',size:21,font:'Arial'})]}),
+            new Paragraph({spacing:{after:320},children:[new TextRun({text:'İmza:          ________________________________',size:21,font:'Arial'})]}),
+          ]}),
+        ]}),
+      ]
+    }),
+    new Paragraph({spacing:{after:60,before:60},children:[new TextRun({text:'Psikolojik Danışman / PDR Öğretmeni',bold:true,size:22,font:'Arial',color:'1A2E5A'})]}),
+    new Paragraph({spacing:{after:40},children:[new TextRun({text:`Ad Soyad: ${student.counselor||'________________________________'}`,size:21,font:'Arial'})]}),
+    new Paragraph({spacing:{after:40},children:[new TextRun({text:`Tarih:        ${new Date().toLocaleDateString('tr-TR')}`,size:21,font:'Arial'})]}),
+    new Paragraph({spacing:{after:0},children:[new TextRun({text:'İmza / Mühür:  ________________________________',size:21,font:'Arial'})]}),
+  ];
+  
+  const docu = new Document({
+    styles:{default:{document:{run:{font:'Arial',size:22}}}},
+    sections:[{properties:{page:{size:{width:11906,height:16838},margin:{top:1134,right:1134,bottom:1134,left:1134}}},children}]
+  });
+  try{
+    const blob = await Packer.toBlob(docu);
+    const safeName = (student.name||'ogrenci').replace(/\s+/g,'_');
+    await saveBlob(blob,`Mudahale_Plani_${safeName}_${grade}sinif.docx`);
+  }catch(err){ alert('DOCX oluşturulurken hata: '+err.message); }
+}
+
+
+// ════════════════════════════════════════════════════════
+//  MISC
+// ════════════════════════════════════════════════════════
+function restartTest(){
+  if(!confirm('Testi sıfırlamak istediğinize emin misiniz?')) return;
+  clearTimers();
+  Object.assign(S,{grade:0,student:{},currentTask:0,taskResults:{},t1:null,t2:null,t3:null,t4:null,t5:null,t6:null});
+  document.querySelectorAll('.grade-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('tab-test').disabled = true;
+  document.getElementById('tab-results').disabled = true;
+  document.getElementById('tab-plan').disabled = true;
+  goTab('info');
+  ['f-name','f-date','f-school','f-fileno','f-counselor','f-reason'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+}
+
+// Set today's date as default
+document.addEventListener('DOMContentLoaded',()=>{
+  const d = document.getElementById('f-date');
+  if(d) d.value = new Date().toISOString().split('T')[0];
+
+  // iOS Safari file:// evrensel fix:
+  // Boş touchstart listener → tüm click olayları tetiklenir
+  document.addEventListener('touchstart', function(){}, {passive:true});
+
+  // Prevent scroll during test tasks
+  document.addEventListener('touchmove', function(e){
+    if(e.target.closest('#task-area') && S.currentTask > 0 && S.currentTask <= 6){
+      const ta = document.getElementById('task-area');
+      if(ta && ta.scrollHeight <= ta.clientHeight) e.preventDefault();
+    }
+  },{passive:false});
+});
+</script>
+</body>
+</html>
