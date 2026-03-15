@@ -130,6 +130,19 @@ select.form-input{cursor:pointer}
 .task-intro-card ul li{font-size:14px;color:var(--text)}
 .task-intro-demo{display:flex;align-items:center;justify-content:center;gap:20px;background:linear-gradient(135deg,#f8faff,#e8f0ff);border-radius:14px;padding:20px;margin-bottom:24px;border:1.5px dashed #c7d8f5;flex-wrap:wrap}
 .demo-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);text-align:center;margin-top:6px}
+@media screen and (max-width:850px){
+  .task-intro{
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:12px;
+  }
+  .btn-begin-task{
+    position:sticky;
+    bottom:8px;
+    z-index:10;
+    box-shadow:0 -4px 16px rgba(26,46,90,.25);
+  }
+}
 .btn-begin-task{cursor:pointer;font-weight:900;padding:16px 40px;min-height:56px;touch-action:manipulation;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:18px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,46,90,.3)}
 .btn-begin-task:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,46,90,.35)}
 
