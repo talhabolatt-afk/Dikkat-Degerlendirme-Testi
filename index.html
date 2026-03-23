@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1A3A6B">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/Dikkat-Degerlendirme-Testi/service-worker.js');
-  }
-</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Dikkat Değerlendirme Testi | 6–10 Yaş</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Nunito:wght@800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <script>
@@ -117,10 +110,10 @@ select.form-input{cursor:pointer}
 .task-pip.done .pip-label{color:var(--ok)}
 
 /* ── TASK DISPLAY AREA ── */
-#task-area{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;user-select:none;-webkit-user-select:none}
+#task-area{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;min-height:520px;display:flex;flex-direction:column;user-select:none;-webkit-user-select:none}
 
 /* ── TASK INTRO ── */
-.task-intro{padding:40px 40px 80px 40px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
+.task-intro{padding:40px;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
 .task-intro-icon{width:90px;height:90px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
 .task-intro h2{font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:900;font-size:28px;color:var(--navy);margin-bottom:8px}
 .task-intro .task-subtitle{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
@@ -130,28 +123,6 @@ select.form-input{cursor:pointer}
 .task-intro-card ul li{font-size:14px;color:var(--text)}
 .task-intro-demo{display:flex;align-items:center;justify-content:center;gap:20px;background:linear-gradient(135deg,#f8faff,#e8f0ff);border-radius:14px;padding:20px;margin-bottom:24px;border:1.5px dashed #c7d8f5;flex-wrap:wrap}
 .demo-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);text-align:center;margin-top:6px}
-@media screen and (max-width:850px){
-  .task-intro{
-    flex:none;
-    height:auto;
-    padding:12px 16px 72px 16px;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-  .task-intro-demo{display:none}
-  .task-complete-screen{flex:none;}
-  .t2-wrap,.t3-wrap,.t4-wrap,.t5-wrap,.t6-wrap{flex:none;}
-  .t1-wrap{
-    padding:8px 12px;
-    flex:1;
-    min-height:0;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-  .t1-cell{ padding:3px; }
-  .t1-cell svg{ width:38px !important; height:38px !important; }
-  .t1-grid{ gap:3px !important; }
-}
 .btn-begin-task{cursor:pointer;font-weight:900;padding:16px 40px;min-height:56px;touch-action:manipulation;background:linear-gradient(135deg,var(--navy),#1d4ed8);color:#fff;border:none;border-radius:12px;font-family:'Nunito',-apple-system,BlinkMacSystemFont,sans-serif;font-size:18px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,46,90,.3)}
 .btn-begin-task:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,46,90,.35)}
 
@@ -179,7 +150,7 @@ select.form-input{cursor:pointer}
 .item-counter{font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap}
 
 /* ── TASK 1: SEÇİCİ DİKKAT ── */
-.t1-wrap{padding:20px 24px;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.t1-wrap{padding:20px 24px;flex:1;overflow:auto}
 .t1-target-box{display:flex;align-items:center;gap:14px;background:#f5f0ff;border:2px solid #c4b5fd;border-radius:12px;padding:12px 18px;margin-bottom:18px}
 .t1-target-box .label{font-size:14px;font-weight:800;color:#7c3aed}
 .t1-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
@@ -424,8 +395,8 @@ body{
 }
 
 /* Task wrap'lerin scroll etmesine izin ver (T1 çok eleman içerebilir) */
-.t1-wrap{ flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-.task-intro{ flex:none; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.t1-wrap{ overflow-y:auto }
+.task-intro{ overflow-y:auto }
 
 /* Diğer paneller scroll edilebilir */
 #panel-info.active,
@@ -491,7 +462,7 @@ body{
   .task-pip:not(:last-child)::after{ top:11px }
 
   /* ── Görev tanıtım ── */
-  .task-intro{ padding:12px 16px 72px 16px; gap:0 }
+  .task-intro{ padding:12px 16px; gap:0 }
   .task-intro-icon{ width:52px; height:52px; font-size:28px; margin-bottom:6px; border-radius:14px }
   .task-intro h2{ font-size:18px; margin-bottom:2px }
   .task-intro .task-subtitle{ margin-bottom:6px; font-size:11px }
@@ -519,7 +490,7 @@ body{
   .timer-track{ height:8px }
 
   /* ── T1 Yıldız Bul ── */
-  .t1-wrap{ padding:8px 12px; flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  .t1-wrap{ padding:8px 12px }
   .t1-target-box{ padding:7px 10px; margin-bottom:8px; border-radius:10px }
 
   /* ── T2 Görünce Bas ── */
@@ -624,9 +595,259 @@ body{
   .t2-btn:active,.t3-res-btn:active,.t4-btn:active,.t5-go-btn:active,
   .t6-option-btn:active,.btn-download:active,.btn-plan-dl:active{ transform:scale(.93) }
 }
+
+/* === MOBİL OPTİMİZASYONLAR === */
+
+/* Touch davranışları */
+* {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Input ve textarea'da seçime izin ver */
+input, textarea, .form-input {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* iOS Zoom önleme (input font-size >= 16px olmalı) */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Touch target optimizasyonu (min 44px) */
+button, .tab-btn, .grade-card, .t1-cell, .t2-btn, .t3-res-btn, .t4-btn, .t5-go-btn, .t6-option-btn, .btn-start, .btn-begin-task, .btn-next-task {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Smooth scrolling ama sadece gerekli alanlarda */
+html, body {
+  overscroll-behavior: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Container scroll davranışı */
+.container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  height: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Panel scroll optimizasyonu */
+.panel {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* iPhone X ve üzeri için safe area */
+.app-header {
+  padding-top: env(safe-area-inset-top);
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* Mobilde butonlar daha büyük */
+@media (max-width: 768px) {
+  .btn-start, .btn-begin-task, .btn-next-task {
+    padding: 16px 24px;
+    font-size: 18px;
+    min-height: 52px;
+  }
+
+  .tab-btn {
+    padding: 12px 4px;
+    font-size: 11px;
+  }
+
+  .grade-card {
+    padding: 12px 4px;
+    min-height: 70px;
+  }
+
+  /* Task grid'leri mobilde optimize */
+  .t1-grid {
+    gap: 8px !important;
+  }
+
+  .t1-cell {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* T3 bölünmüş dikkat panelleri mobilde üst üste */
+  .t3-panels {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+  }
+
+  /* T4 butonları mobilde yan yana */
+  .t4-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .t4-btn {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  /* T6 seçenekleri mobilde daha büyük */
+  .t6-option-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  .t6-slot {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  /* Form grid mobilde tek sütun */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-field.half {
+    grid-column: 1 !important;
+  }
+
+  /* Grade cards 2x2 grid */
+  .grade-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* KPI kartları 2x2 */
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Results grid tek sütun */
+  .results-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Plan genel items tek sütun */
+  .plan-general-items {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Küçük telefonlar (iPhone SE vb) */
+@media (max-width: 375px) {
+  .app-header-text h1 {
+    font-size: 16px;
+  }
+
+  .app-header-logo {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .task-intro h2 {
+    font-size: 20px;
+  }
+
+  .countdown-num {
+    font-size: 80px !important;
+  }
+
+  .t2-stimulus-box, .t5-box {
+    width: 140px !important;
+    height: 140px !important;
+  }
+}
+
+/* Tablet yatay mod */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .container {
+    max-width: 100%;
+    padding: 20px 40px;
+  }
+
+  .t3-panels {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Animasyon performans optimizasyonu */
+.t1-cell, .t2-btn, .t3-res-btn, .t4-btn, .t5-go-btn, .t6-option-btn {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Touch feedback */
+@media (hover: none) {
+  .t1-cell:active {
+    transform: scale(0.9);
+    background: rgba(0,180,216,0.2);
+  }
+
+  .grade-card:active {
+    transform: scale(0.95);
+  }
+
+  .tab-btn:active {
+    opacity: 0.7;
+  }
+}
+
+/* Klavye açıldığında input görünürlüğü */
+input:focus, textarea:focus {
+  scroll-margin-bottom: 100px;
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  .container {
+    padding-bottom: 90px; /* iOS için ekstra boşluk */
+  }
+
+  /* Fixed elementlerin iOS'ta düzgün çalışması */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+}
 </style>
+<base target="_blank">
 </head>
-<body ontouchstart="">
+<body ontouchstart="" ontouchstart="">
 
 <header class="app-header">
   <div class="app-header-logo">🧠</div>
@@ -729,7 +950,7 @@ body{
   <!-- ══ PANEL: TEST ══ -->
   <div id="panel-test" class="panel">
     <div class="task-progress" id="taskProgress"></div>
-    <div id="task-area"></div>
+    <div id="task-area" style="touch-action: manipulation;"></div>
   </div>
 
   <!-- ══ PANEL: RESULTS ══ -->
@@ -2770,6 +2991,86 @@ document.addEventListener('DOMContentLoaded',()=>{
   // iOS Safari file:// evrensel fix:
   // Boş touchstart listener → tüm click olayları tetiklenir
   document.addEventListener('touchstart', function(){}, {passive:true});
+
+  // Prevent scroll during test tasks
+  document.addEventListener('touchmove', function(e){
+    if(e.target.closest('#task-area') && S.currentTask > 0 && S.currentTask <= 6){
+      const ta = document.getElementById('task-area');
+      if(ta && ta.scrollHeight <= ta.clientHeight) e.preventDefault();
+    }
+  },{passive:false});
+});
+
+// === MOBİL OPTİMİZASYONLARI ===
+
+// Passive event listeners desteği kontrolü
+let supportsPassive = false;
+try {
+  const opts = Object.defineProperty({}, 'passive', {
+    get: function() {
+      supportsPassive = true;
+      return true;
+    }
+  });
+  window.addEventListener('test', null, opts);
+} catch (e) {}
+
+// Touch delay'i ortadan kaldır (300ms)
+document.addEventListener('touchstart', function(){}, supportsPassive ? {passive: true} : false);
+
+// Double-tap zoom'u engelle
+document.addEventListener('touchend', function(event) {
+  event.preventDefault();
+  event.target.click();
+}, supportsPassive ? {passive: false} : false);
+
+// Klavye açıldığında scroll pozisyonunu koru (iOS fix)
+let scrollPos = 0;
+const inputs = document.querySelectorAll('input, textarea');
+inputs.forEach(input => {
+  input.addEventListener('focus', (e) => {
+    scrollPos = document.querySelector('.container').scrollTop;
+    setTimeout(() => {
+      e.target.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }, 300);
+  });
+
+  input.addEventListener('blur', () => {
+    setTimeout(() => {
+      document.querySelector('.container').scrollTop = scrollPos;
+    }, 100);
+  });
+});
+
+// Viewport height'i dinamik hesapla (mobile browser chrome için)
+function setVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setVH();
+window.addEventListener('resize', setVH);
+window.addEventListener('orientationchange', () => {
+  setTimeout(setVH, 100);
+});
+
+// Touch taşma (swipe) engelleme
+document.querySelectorAll('.t1-wrap, .t2-wrap, .t3-wrap, .t4-wrap, .t5-wrap, .t6-wrap').forEach(el => {
+  el.addEventListener('touchmove', function(e) {
+    e.stopPropagation();
+  }, supportsPassive ? {passive: true} : false);
+});
+
+// Context menu ve selection'ı engelle (sadece test alanlarında)
+document.querySelectorAll('#task-area').forEach(el => {
+  el.addEventListener('contextmenu', e => e.preventDefault());
+});
+
+// Visibility change handler (sayfa arka plandayken timer'ları duraklat)
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Timer'ları duraklat (gerekirse)
+    console.log('Sayfa arka planda');
+  }
 });
 </script>
 </body>
