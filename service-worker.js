@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dikkat-testi-v5';
+const CACHE_NAME = 'dikkat-testi-v6';
 const ASSETS = [
   '/Dikkat-Degerlendirme-Testi/',
   '/Dikkat-Degerlendirme-Testi/index.html'
