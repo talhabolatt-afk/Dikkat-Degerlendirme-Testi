@@ -2744,14 +2744,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   // iOS Safari file:// evrensel fix:
   // Boş touchstart listener → tüm click olayları tetiklenir
   document.addEventListener('touchstart', function(){}, {passive:true});
-
-  // Prevent scroll during test tasks
-  document.addEventListener('touchmove', function(e){
-    if(e.target.closest('#task-area') && S.currentTask > 0 && S.currentTask <= 6){
-      const ta = document.getElementById('task-area');
-      if(ta && ta.scrollHeight <= ta.clientHeight) e.preventDefault();
-    }
-  },{passive:false});
 });
 </script>
 </body>
